@@ -1,0 +1,34 @@
+{
+	"$":{"Namespace":"AppStoreApp.Server.Partials"},
+	"Uri" : "",
+	"Html" : "",
+	"RedirectUrl" : "",
+	"ErrorResponce" : {
+		"Text": "",
+		"StackTrace": "",
+		"LogEntry": "",
+		"ServerCode": 0,
+		"Helplink": ""
+	},
+	"Updates" : 0,
+	"AppStores" : [{
+		"DisplayName": "",
+		"Items": [{
+				"ID" : "",
+				"SourceUrl": "",
+				"DisplayName" : "",
+				"Version" : "",
+				"VersionDate" : "",
+				"IsInstalled" : false,
+				"NewVersionAvailable" : false,
+				"ImageUrl" : "",
+				"Install$" : null,
+				"Uninstall$" : null,
+				"Upgrade$" : null,
+				"Start$" : null,
+				"Stop$" :null,
+				"IsBusy" : false
+		}],
+		"Updates" : 0
+	}]
+}

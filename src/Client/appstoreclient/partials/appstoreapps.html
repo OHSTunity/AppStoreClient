@@ -1,0 +1,168 @@
+﻿
+<link rel="stylesheet" href="/appstoreclient/css/master.css">
+
+
+<template bind="{{AppStoreClient}}">
+
+    <Style>
+        table.gridtable {
+            font-family: verdana,arial,sans-serif;
+            font-size: 11px;
+            color: #333333;
+            border-width: 1px;
+            border-color: #666666;
+            border-collapse: collapse;
+        }
+
+        table.gridtable th {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #dedede;
+        }
+
+        table.gridtable td {
+            border-width: 1px;
+            padding: 0px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #ffffff;
+        }
+
+        .errorNotice {
+            color: #FFFFFF;
+            padding: 5px 5px 5px 5px;
+            background-color: #F57900;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .appStoreItemPanel {
+            background: #e5e5e5;
+            padding: 10px;
+        }
+
+        .appStoreItemPanel h2 {
+            margin:10px 0px 10px 0px;
+            border-bottom: 1px solid rgb(211, 211, 211);
+        }
+
+        .appStoreItem {
+            display: inline-block;
+            width: 130px;
+            height: 235px;
+            background-color: #ffffff;
+            border: 1px solid rgb(211, 211, 211);
+            border-radius: 4px;
+            box-sizing: border-box;
+            box-shadow: 0px 1px 1px #bbbbbb;
+            margin: 4px;
+            vertical-align:top;
+        }
+
+        .appStoreItemButtonPanel {
+            margin: 5px;
+            margin-top: 0px;
+        }
+
+        .appStoreItemButtonPanel Button {
+            margin: 5px;
+            margin-top : 0px;
+            margin-right : 0px;
+        }
+        .appStoreItem p {
+            margin-left: 10px;
+            margin-top: -10px;
+            color: black;
+        }
+
+
+    </Style>
+
+    <template if="{{ErrorResponce.Text}}">
+        <div class="errorNotice">{{ErrorResponce.Text}}</div>
+    </template>
+
+    <div class="appStoreItemPanel">
+        <template repeat="{{store in AppStores}}">
+
+            <h2>{{store.DisplayName}} Store</h2>
+
+            <template repeat="{{item in store.Items}}">
+                <div class="appStoreItem">
+                    <img style="padding:10px; height: auto; width: auto; max-width: 110px; max-height: 110px;" src="{{item.ImageUrl}}" />
+                    <p>{{item.DisplayName}}</p>
+                    <p>{{item.Version}}</p>
+
+                    <template if="{{item.IsBusy}}">
+                        <div class="spinner tiny"></div>
+                    </template>
+
+                    <div class="appStoreItemButtonPanel">
+                        <template if="{{!item.IsInstalled}}">
+                            <button onclick="getModel(this).item.Install$ = null">Install</button>
+                        </template>
+
+                        <template if="{{item.NewVersionAvailable && item.IsInstalled}}">
+                            <button onclick="getModel(this).item.Upgrade$ = null">Upgrade</button>
+                        </template>
+                        <template if="{{item.IsInstalled}}">
+                            <button onclick="getModel(this).item.Uninstall$ = null">Uninstall</button>
+                        </template>
+
+                        <template if="{{item.IsInstalled}}">
+                            <div>
+                                <button onclick="getModel(this).item.Start$ = null">Start</button>
+                                <button onclick="getModel(this).item.Stop$ = null">Stop</button>
+                            </div>
+                        </template>
+                    </div>
+
+                </div>
+            </template>
+        </template>
+    </div>
+
+<!--    <template repeat="{{store in AppStores}}">
+        {{store.DisplayName}} Store
+
+        <table class="gridtable"  >
+            <thead>
+                <tr>
+                    <th>Icon</th>
+                    <th>Name</th>
+                    <th>Version</th>
+                    <th>IsInstalled</th>
+                    <th>NewVersionAvailable</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody> 
+
+                <template repeat="{{item in store.Items}}">
+                    <tr>
+                        <td>
+                            <img style="height: auto; width: auto; max-width: 32px; max-height: 32px;" src="{{item.ImageUrl}}" />
+                        </td>
+
+                        <td>
+                            <a href="/launcher/workspace/admin/users/{{item.Username}}"> {{item.DisplayName}}</a>
+                        </td>
+                        <td>{{item.Version}} ({{item.VersionDate}})</td>
+                        <td>{{item.IsInstalled}}</td>
+                        <td>{{item.NewVersionAvailable}}</td>
+                        <td>
+                            <button onclick="getModel(this).item.Install$ = null">Install</button>
+                            <button onclick="getModel(this).item.Upgrade$ = null">Upgrade</button>
+                            <button onclick="getModel(this).item.Uninstall$ = null">Uninstall</button>
+                            <button onclick="getModel(this).item.Start$ = null">Start</button>
+                            <button onclick="getModel(this).item.Stop$ = null">Stop</button>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </template>-->
+</template>

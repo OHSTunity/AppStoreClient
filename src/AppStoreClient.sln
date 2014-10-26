@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppStoreClient", "AppStoreClient.csproj", "{2C95CFA0-3F62-45A2-A0E7-ABD5590549AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C95CFA0-3F62-45A2-A0E7-ABD5590549AB}.Debug|x64.ActiveCfg = Debug|x64
+		{2C95CFA0-3F62-45A2-A0E7-ABD5590549AB}.Debug|x64.Build.0 = Debug|x64
+		{2C95CFA0-3F62-45A2-A0E7-ABD5590549AB}.Release|x64.ActiveCfg = Release|x64
+		{2C95CFA0-3F62-45A2-A0E7-ABD5590549AB}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
