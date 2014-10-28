@@ -27,7 +27,7 @@
 				"Upgrade$" : null,
 				"Start$" : null,
 				"Stop$" :null,
-				"IsBusy" : false
+				"IsBusy$" : false
 		}],
 		"Updates" : 0
 	}]

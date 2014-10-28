@@ -1,4 +1,4 @@
-﻿
+﻿<link rel="import" href="/vendor/puppet-redirect/src/puppet-redirect.html">
 <link rel="stylesheet" href="/appstoreclient/css/master.css">
 
 
@@ -39,8 +39,6 @@
         }
 
         .appStoreItemPanel {
-            background: #e5e5e5;
-            padding: 10px;
         }
 
         .appStoreItemPanel h2 {
@@ -51,9 +49,9 @@
         .appStoreItem {
             display: inline-block;
             width: 130px;
-            height: 235px;
-            background-color: #ffffff;
-            border: 1px solid rgb(211, 211, 211);
+            height: 240px;
+            background-color: #f8f8f8;
+            border: 1px solid #ffffff;
             border-radius: 4px;
             box-sizing: border-box;
             box-shadow: 0px 1px 1px #bbbbbb;
@@ -66,10 +64,38 @@
             margin-top: 0px;
         }
 
+
         .appStoreItemButtonPanel Button {
-            margin: 5px;
-            margin-top : 0px;
-            margin-right : 0px;
+            margin: 0px 0px 5px 0px;
+            border: 0px;
+            padding: 5px 10px 5px 10px;
+            color: white;
+            width: 100%;
+            border-radius: 2px;
+        }
+
+        .installButton {
+            background: #66DE1E;
+        }
+
+        .uninstallButton {
+            background: #DE3F1E;
+        }
+
+        .upgradeButton {
+            background: #1E81DE;
+        }
+
+
+        .startButton {
+            background: #66DE1E;
+            width: 56px !important;
+        }
+        .stopButton {
+
+            margin-left: 2px !important;
+            background: #DE3F1E;
+            width: 56px !important;
         }
         .appStoreItem p {
             margin-left: 10px;
@@ -95,34 +121,40 @@
                     <p>{{item.DisplayName}}</p>
                     <p>{{item.Version}}</p>
 
-                    <template if="{{item.IsBusy}}">
-                        <div class="spinner tiny"></div>
+                    <template if="{{item.IsBusy$}}">
+                        <div style="margin-left:50px" class="spinner medium"></div>
                     </template>
 
-                    <div class="appStoreItemButtonPanel">
-                        <template if="{{!item.IsInstalled}}">
-                            <button onclick="getModel(this).item.Install$ = null">Install</button>
-                        </template>
+                    <template if="{{!item.IsBusy$}}">
 
-                        <template if="{{item.NewVersionAvailable && item.IsInstalled}}">
-                            <button onclick="getModel(this).item.Upgrade$ = null">Upgrade</button>
-                        </template>
-                        <template if="{{item.IsInstalled}}">
-                            <button onclick="getModel(this).item.Uninstall$ = null">Uninstall</button>
-                        </template>
+                        <div class="appStoreItemButtonPanel">
+                            <template if="{{!item.IsInstalled}}">
+                                <button class="installButton" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Install$ = null">Install</button>
+                            </template>
 
-                        <template if="{{item.IsInstalled}}">
-                            <div>
-                                <button onclick="getModel(this).item.Start$ = null">Start</button>
-                                <button onclick="getModel(this).item.Stop$ = null">Stop</button>
-                            </div>
-                        </template>
-                    </div>
+                            <template if="{{item.NewVersionAvailable && item.IsInstalled}}">
+                                <button class="upgradeButton" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Upgrade$ = null">Upgrade</button>
+                            </template>
+                            <template if="{{item.IsInstalled}}">
+                                <button class="uninstallButton" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Uninstall$ = null">Uninstall</button>
+                            </template>
+
+                            <template if="{{item.IsInstalled}}">
+                                <div>
+                                    <button class="startButton" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Start$ = null">Start</button>
+                                    <button class="stopButton" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Stop$ = null">Stop</button>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+
 
                 </div>
             </template>
         </template>
     </div>
+
+    <link is="puppet-redirect" history url="{{ RedirectUrl }}">
 
 <!--    <template repeat="{{store in AppStores}}">
         {{store.DisplayName}} Store

@@ -102,6 +102,9 @@ namespace AppStoreApp.Server.Partials {
             task.Arguments = string.Empty;
 
             this.ExecuteTask(task);
+
+            ListAppStoreAppsPage page = this.Parent.Parent.Parent.Parent as ListAppStoreAppsPage;
+            page.RedirectUrl = "/launcher";
         }
 
         /// <summary>
@@ -113,8 +116,13 @@ namespace AppStoreApp.Server.Partials {
             Representations.JSON.ApplicationTask task = new Representations.JSON.ApplicationTask();
             task.Type = "Stop";
             task.ID = this.ID;
+            task.DatabaseName = StarcounterEnvironment.DatabaseNameLower;
 
             this.ExecuteTask(task);
+
+            ListAppStoreAppsPage page = this.Parent.Parent.Parent.Parent as ListAppStoreAppsPage;
+            page.RedirectUrl = "/launcher";
+
         }
 
         /// <summary>
@@ -137,6 +145,8 @@ namespace AppStoreApp.Server.Partials {
                     page.ErrorResponce.PopulateFromJson(response.Body);
                 }
             }
+
+
             this.IsBusy = false;
         }
 
