@@ -75,28 +75,29 @@
         }
 
         .installButton {
-            background: #66DE1E;
+            background: #1E81DE;
         }
 
-        .uninstallButton {
-            background: #DE3F1E;
+        .startButton {
+            background: #479E13;
         }
+
 
         .upgradeButton {
             background: #1E81DE;
         }
 
-
-        .startButton {
-            background: #66DE1E;
-            width: 56px !important;
-        }
         .stopButton {
+            background: #DE3F1E;
+            width: 42px !important;
+        }
 
+        .uninstallButton {
             margin-left: 2px !important;
             background: #DE3F1E;
-            width: 56px !important;
+            width: 70px !important;
         }
+
         .appStoreItem p {
             margin-left: 10px;
             margin-top: -10px;
@@ -132,17 +133,19 @@
                                 <button class="installButton" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Install$ = null">Install</button>
                             </template>
 
+                            <template if="{{item.IsInstalled}}">
+                                    <button class="startButton" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Start$ = null">Start</button>
+                            </template>
+
+
                             <template if="{{item.NewVersionAvailable && item.IsInstalled}}">
                                 <button class="upgradeButton" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Upgrade$ = null">Upgrade</button>
-                            </template>
-                            <template if="{{item.IsInstalled}}">
-                                <button class="uninstallButton" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Uninstall$ = null">Uninstall</button>
                             </template>
 
                             <template if="{{item.IsInstalled}}">
                                 <div>
-                                    <button class="startButton" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Start$ = null">Start</button>
                                     <button class="stopButton" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Stop$ = null">Stop</button>
+                                    <button class="uninstallButton" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Uninstall$ = null">Uninstall</button>
                                 </div>
                             </template>
                         </div>
