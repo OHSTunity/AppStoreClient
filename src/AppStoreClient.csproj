@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Client\appstoreclient\css\master.css" />
+    <Content Include="Client\appstoreclient\app-icon.html" />
     <Content Include="Client\appstoreclient\images\spiffygif_18x18.gif" />
     <Content Include="Client\appstoreclient\images\spiffygif_28x28.gif" />
     <Content Include="Client\appstoreclient\images\spiffygif_32x32.gif" />
@@ -114,6 +115,11 @@
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="Server\JSON\AppStoreApplications.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="Server\AppName.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>

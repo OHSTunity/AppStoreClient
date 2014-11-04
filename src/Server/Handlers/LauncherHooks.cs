@@ -22,6 +22,29 @@ namespace AppStoreApp.Server.Handlers {
                 return menuPage;
             });
 
+            // App-icon (Launchpad)
+            Starcounter.Handle.GET(8080, "/app-icon", () =>
+            {
+                return new AppStoreMenu()
+                {
+                    Html = "/appstoreclient/app-icon.html"
+                };
+            });
+
+            // App-name (Launchpad)
+            Starcounter.Handle.GET(8080, "/app-name", () =>
+            {
+                return new AppName();
+            });
+
+            // Workspace root (Launchpad)
+            Starcounter.Handle.GET(8080, "/AppStoreClient", () =>
+            {
+                Starcounter.Response resp;
+                Starcounter.X.GET("/appstore/apps", out resp);
+                return resp;
+            });
+
             #endregion
         }
     }
