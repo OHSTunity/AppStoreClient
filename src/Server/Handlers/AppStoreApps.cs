@@ -14,10 +14,10 @@ namespace AppStoreApp.Server.Handlers {
             //
             // App Store apps
             //
-            Starcounter.Handle.GET( "/appstore/apps", (Request request) => {
+            Starcounter.Handle.GET( "/AppStoreClient/apps", (Request request) => {
 
                 Partials.ListAppStoreAppsPage page = new Partials.ListAppStoreAppsPage() {
-                    Html = "/appstoreclient/partials/appstoreapps.html",
+                    Html = "/AppStoreClient/partials/appstoreapps.html",
                     Uri = request.Uri
                 };
 

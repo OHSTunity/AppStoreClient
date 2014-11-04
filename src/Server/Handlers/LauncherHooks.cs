@@ -16,7 +16,7 @@ namespace AppStoreApp.Server.Handlers {
             Starcounter.Handle.GET(8080, "/menu", () => {
 
                 var menuPage = new AppStoreMenu() {
-                    Html = "/appstoreclient/appstoremenu.html"
+                    Html = "/AppStoreClient/appstoremenu.html"
                 };
 
                 return menuPage;
@@ -27,7 +27,7 @@ namespace AppStoreApp.Server.Handlers {
             {
                 return new AppStoreMenu()
                 {
-                    Html = "/appstoreclient/app-icon.html"
+                    Html = "/AppStoreClient/app-icon.html"
                 };
             });
 
@@ -41,7 +41,7 @@ namespace AppStoreApp.Server.Handlers {
             Starcounter.Handle.GET(8080, "/AppStoreClient", () =>
             {
                 Starcounter.Response resp;
-                Starcounter.X.GET("/appstore/apps", out resp);
+                Starcounter.X.GET("/AppStoreClient/apps", out resp);
                 return resp;
             });
 

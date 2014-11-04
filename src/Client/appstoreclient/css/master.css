@@ -9,18 +9,18 @@
 
 .spinner.tiny {
     height: 18px; width: 18px; /* Pixel size of the GIF you download */
-    background: url("/appstoreclient/images/spiffygif_18x18.gif");
+    background: url("/AppStoreClient/images/spiffygif_18x18.gif");
 }
 .spinner.small {
     height: 24px; width: 24px; /* Pixel size of the GIF you download */
-    background: url("/appstoreclient/images/spiffygif_28x28.gif");
+    background: url("/AppStoreClient/images/spiffygif_28x28.gif");
 }
 .spinner.medium {
     height: 32px; width: 32px;
-    background: url("/appstoreclient/images/spiffygif_32x32.gif");
+    background: url("/AppStoreClient/images/spiffygif_32x32.gif");
 }
 .spinner.large {
     height: 64px; width: 64px;
-    background: url("/appstoreclient/images/spiffygif_64x64.gif");
+    background: url("/AppStoreClient/images/spiffygif_64x64.gif");
 }
 
