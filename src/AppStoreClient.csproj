@@ -83,6 +83,7 @@
   <ItemGroup>
     <Content Include="Client\AppStoreClient\css\master.css" />
     <Content Include="Client\AppStoreClient\app-icon.html" />
+    <Content Include="Client\AppStoreClient\images\AppStoreClient.png" />
     <Content Include="Client\AppStoreClient\images\spiffygif_18x18.gif" />
     <Content Include="Client\AppStoreClient\images\spiffygif_28x28.gif" />
     <Content Include="Client\AppStoreClient\images\spiffygif_32x32.gif" />
