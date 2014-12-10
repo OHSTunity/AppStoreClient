@@ -10,6 +10,8 @@ namespace AppStoreApp.Server.Partials {
             // Get Available app store items
             Response response = Node.LocalhostSystemPortNode.GET("/api/admin/appstore/apps");
 
+            this.AppStores.Clear();
+
             if (response.StatusCode != (ushort)System.Net.HttpStatusCode.OK) {
 
                 this.ErrorResponce = new AppStoreApp.Server.Partials.ListAppStoreAppsPage.ErrorResponceJson();
@@ -103,8 +105,12 @@ namespace AppStoreApp.Server.Partials {
 
             this.ExecuteTask(task);
 
-            ListAppStoreAppsPage page = this.Parent.Parent.Parent.Parent as ListAppStoreAppsPage;
-            page.RedirectUrl = "/launcher";
+            //ListAppStoreAppsPage page = this.Parent.Parent.Parent.Parent as ListAppStoreAppsPage;
+            //page.RedirectUrl = "/launcher";
+
+            //var r = X.GET("/launcher");
+
+
         }
 
         /// <summary>
@@ -120,8 +126,10 @@ namespace AppStoreApp.Server.Partials {
 
             this.ExecuteTask(task);
 
-            ListAppStoreAppsPage page = this.Parent.Parent.Parent.Parent as ListAppStoreAppsPage;
-            page.RedirectUrl = "/launcher";
+            //ListAppStoreAppsPage page = this.Parent.Parent.Parent.Parent as ListAppStoreAppsPage;
+            //page.RedirectUrl = "/launcher";
+
+            //var r = X.GET("/launcher");
 
         }
 
@@ -156,23 +164,26 @@ namespace AppStoreApp.Server.Partials {
         /// </summary>
         private void refreshItem() {
 
-            // Get Available app store items
-            Response response = Node.LocalhostSystemPortNode.GET("/api/admin/appstore/apps/" + this.ID);
+            ListAppStoreAppsPage page = this.Parent.Parent.Parent.Parent as ListAppStoreAppsPage;
+            page.refreshItems();
 
-            if (response.StatusCode >= 200 && response.StatusCode < 300) {
+            //// Get Available app store items
+            //Response response = Node.LocalhostSystemPortNode.GET("/api/admin/appstore/apps/" + this.ID);
 
-                Representations.JSON.AppStoreApplication app = new Representations.JSON.AppStoreApplication();
-                app.PopulateFromJson(response.Body);
+            //if (response.StatusCode >= 200 && response.StatusCode < 300) {
 
-                this.SetItemProperties(app);
-            }
-            else {
-                ListAppStoreAppsPage page = this.Parent.Parent.Parent.Parent as ListAppStoreAppsPage;
-                if (page != null) {
-                    page.ErrorResponce = new AppStoreApp.Server.Partials.ListAppStoreAppsPage.ErrorResponceJson();
-                    page.ErrorResponce.PopulateFromJson(response.Body);
-                }
-            }
+            //    Representations.JSON.AppStoreApplication app = new Representations.JSON.AppStoreApplication();
+            //    app.PopulateFromJson(response.Body);
+
+            //    this.SetItemProperties(app);
+            //}
+            //else {
+            //    ListAppStoreAppsPage page = this.Parent.Parent.Parent.Parent as ListAppStoreAppsPage;
+            //    if (page != null) {
+            //        page.ErrorResponce = new AppStoreApp.Server.Partials.ListAppStoreAppsPage.ErrorResponceJson();
+            //        page.ErrorResponce.PopulateFromJson(response.Body);
+            //    }
+            //}
         }
 
         /// <summary>
