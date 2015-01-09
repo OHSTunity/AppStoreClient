@@ -39,7 +39,7 @@ namespace AppStoreApp.Server.Handlers {
             }, HandlerOptions.ApplicationLevel);
 
             // Workspace root (Launchpad)
-            Starcounter.Handle.GET(8080, "/AppStoreClient", () =>
+            Starcounter.Handle.GET( "/AppStoreClient", () =>
             {
                 Starcounter.Response resp;
                 Starcounter.X.GET("/AppStoreClient/apps", out resp);
