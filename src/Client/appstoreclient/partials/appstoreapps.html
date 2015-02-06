@@ -1,33 +1,23 @@
 ﻿<link rel="import" href="/sys/puppet-redirect/src/puppet-redirect.html">
+<link rel="import" href="/sys/star-rating/star-rating.html">
 <link rel="stylesheet" href="/AppStoreClient/css/master.css">
 
 
 <template bind="{{AppStoreClient}}">
 
     <Style>
-        table.gridtable {
-            font-family: verdana,arial,sans-serif;
-            font-size: 11px;
-            color: #333333;
-            border-width: 1px;
-            border-color: #666666;
-            border-collapse: collapse;
-        }
 
-        table.gridtable th {
-            border-width: 1px;
-            padding: 8px;
-            border-style: solid;
-            border-color: #666666;
-            background-color: #dedede;
-        }
 
-        table.gridtable td {
-            border-width: 1px;
+        h1 {
+            /*font-family: times, Times New Roman, times-roman, georgia, serif;*/
+            /*font-size: 48px;*/
+            /*line-height: 40px;*/
+            letter-spacing: -1px;
+            font-size: 400%;
+            color: #444444;
+            margin: 0px 0px 10px 0px;
             padding: 0px;
-            border-style: solid;
-            border-color: #666666;
-            background-color: #ffffff;
+            font-weight: 100;
         }
 
         .errorNotice {
@@ -39,69 +29,112 @@
         }
 
         .appStoreItemPanel {
-        }
-
-        .appStoreItemPanel h2 {
-            margin:10px 0px 10px 0px;
-            border-bottom: 1px solid rgb(211, 211, 211);
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: left;
+            justify-content: left;
+            -webkit-flex-direction: row;
+            flex-direction: row;
+            -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -webkit-flex-flow: row wrap;
+            flex-flow: row wrap;
+            -webkit-align-content: flex-end;
+            align-content: flex-end;
         }
 
         .appStoreItem {
-            display: inline-block;
-            width: 130px;
-            height: 240px;
-            background-color: #f8f8f8;
-            border: 1px solid #ffffff;
+            display: -webkit-flex;
+            display: flex;
+            flex-direction: column;
+            width: 380px;
+            height: 215px;
+            background-color: rgba(250, 250, 250, 1);
+            color: #000000;
+            border: 1px solid rgba(15, 51, 84, 0.36);
+            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.17);
             border-radius: 4px;
             box-sizing: border-box;
-            box-shadow: 0px 1px 1px #bbbbbb;
-            margin: 4px;
-            vertical-align:top;
+            margin: 6px;
+            vertical-align: top;
+            padding: 15px;
         }
 
-        .appStoreItemButtonPanel {
-            margin: 5px;
-            margin-top: 0px;
+        /* App Item Top part */
+        .appStoreItem > div:first-child {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex: 0 0 auto;
+            flex: 0 0 auto;
         }
 
+        /* App Image Panel */
+        .appStoreItem > div:first-child > div:nth-child(1) {
+            border-radius: 5px;
+        }
 
-        .appStoreItemButtonPanel Button {
-            margin: 0px 0px 5px 0px;
+        /* App Image */
+        .appStoreItem > div:first-child > div:nth-child(1) > img {
+            padding: 15px;
+            height: auto;
+            width: auto;
+            max-width: 110px;
+            max-height: 110px;
+        }
+
+        /* App Properties  */
+        .appStoreItem > div:first-child > div:nth-child(2) {
+            flex: 1 1 0;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        /* App Actions  */
+        .appStoreItem > div:first-child > div:nth-child(3) {
+            display: -webkit-flex;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* App Buttons */
+        .appStoreItem > div:first-child > div:nth-child(3) > button {
             border: 0px;
             padding: 5px 10px 5px 10px;
             color: white;
-            width: 100%;
             border-radius: 2px;
+            min-width: 100px;
+            margin-bottom: 5px;
+            cursor:pointer;
         }
 
-        .installButton {
-            background: #1E81DE;
+        /* App Item Bottom part */
+        .appStoreItem > div:last-child {
+            -webkit-flex: 1 0 0;
+            flex: 1 0 0;
+            overflow: auto;
         }
 
-        .startButton {
-            background: #479E13;
+        .appStoreItem > div:last-child > h1 {
+            font-size: 130%;
+            margin: 10px 0px 10px 0px;
+            color: #000000;
+        }
+
+        .appStoreItem > div:last-child > p {
+            font-size: 100%;
+            margin: 0px;
+            color: #444444;
+        }
+
+        .appStoreItem table {
+            color: #444444;
         }
 
 
-        .upgradeButton {
-            background: #1E81DE;
-        }
-
-        .stopButton {
-            background: #DE3F1E;
-            width: 42px !important;
-        }
-
-        .uninstallButton {
-            margin-left: 2px !important;
-            background: #DE3F1E;
-            width: 70px !important;
-        }
-
-        .appStoreItem p {
-            margin-left: 10px;
-            margin-top: -10px;
-            color: black;
+        .appStoreItemPanel a:link {
+            text-decoration: none;
         }
 
 
@@ -111,93 +144,71 @@
         <div class="errorNotice">{{ErrorResponce.Text}}</div>
     </template>
 
-    <div class="appStoreItemPanel">
-        <template repeat="{{store in AppStores}}">
+    <template repeat="{{store in AppStores}}">
 
-            <h2>{{store.DisplayName}} Store</h2>
+        <h1>{{store.DisplayName}} Store</h1>
+
+        <div class="appStoreItemPanel">
 
             <template repeat="{{item in store.Items}}">
-                <div class="appStoreItem">
-                    <img style="padding:10px; height: auto; width: auto; max-width: 110px; max-height: 110px;" src="{{item.ImageUrl}}" />
-                    <p>{{item.DisplayName}}</p>
-                    <p>{{item.Version}}</p>
 
-                    <template if="{{item.IsBusy$}}">
-                        <div style="margin-left:50px" class="spinner medium"></div>
-                    </template>
+                    <div class="appStoreItem">
+                        <!-- Top part -->
+                        <div>
+                            <!-- Image -->
+                            <div>
+                                <!--<img style="padding:10px; height: auto; width: auto; max-width: 110px; max-height: 110px;" src="{{item.ImageUrl}}" />-->
+                                <img src="{{item.ImageUrl}}" />
+                            </div>
 
-                    <template if="{{!item.IsBusy$}}">
+                            <!-- Properties -->
+                            <div >
+                                <table>
+                                    <tbody>
+                                        <tr><td>{{item.DisplayName}}</td></tr>
+                                        <tr><td>Version {{item.Version}}</td></tr>
+                                        <tr><td><star-rating stars="5" rate="0"></star-rating></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
-                        <div class="appStoreItemButtonPanel">
-                            <template if="{{!item.IsInstalled}}">
-                                <button class="installButton" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Install$ = null">Install</button>
-                            </template>
+                            <!-- Actions -->
+                            <div >
+                                <template if="{{item.IsBusy$}}">
+                                    <div style="margin-left:50px" class="spinner medium"></div>
+                                </template>
 
-                            <template if="{{item.IsInstalled}}">
-                                    <button class="startButton" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Start$ = null">Start</button>
-                            </template>
+                                <template if="{{!item.IsBusy$}}">
+                                    <template if="{{!item.IsInstalled}}">
+                                        <button style="background: #1E81DE" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Install$++">Install</button>
+                                    </template>
 
+                                    <template if="{{item.IsInstalled}}">
+                                        <button style="background: #479E13" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Start$++">Start</button>
+                                    </template>
 
-                            <template if="{{item.NewVersionAvailable && item.IsInstalled}}">
-                                <button class="upgradeButton" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Upgrade$ = null">Upgrade</button>
-                            </template>
+                                    <template if="{{item.NewVersionAvailable && item.IsInstalled}}">
+                                        <button style="background: #1E81DE" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Upgrade$++">Upgrade</button>
+                                    </template>
 
-                            <template if="{{item.IsInstalled}}">
-                                <div>
-                                    <button class="stopButton" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Stop$ = null">Stop</button>
-                                    <button class="uninstallButton" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Uninstall$ = null">Uninstall</button>
-                                </div>
-                            </template>
+                                    <template if="{{item.IsInstalled}}">
+                                        <button style="background: #DE3F1E" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Stop$++">Stop</button>
+                                        <button style="background: #DE3F1E" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Uninstall$++">Uninstall</button>
+                                    </template>
+                                </template>
+                            </div>
                         </div>
-                    </template>
 
-
-                </div>
+                        <!-- Bottom part, description -->
+                        <div>
+                            <h1>{{item.Heading}}</h1>
+                            <p>{{item.Description}}</p>
+                        </div>
+                    </div>
             </template>
-        </template>
-    </div>
+        </div>
+    </template>
 
     <link is="puppet-redirect" history url="{{ RedirectUrl }}">
 
-<!--    <template repeat="{{store in AppStores}}">
-        {{store.DisplayName}} Store
-
-        <table class="gridtable"  >
-            <thead>
-                <tr>
-                    <th>Icon</th>
-                    <th>Name</th>
-                    <th>Version</th>
-                    <th>IsInstalled</th>
-                    <th>NewVersionAvailable</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-
-            <tbody> 
-
-                <template repeat="{{item in store.Items}}">
-                    <tr>
-                        <td>
-                            <img style="height: auto; width: auto; max-width: 32px; max-height: 32px;" src="{{item.ImageUrl}}" />
-                        </td>
-
-                        <td>
-                            <a href="/launcher/workspace/admin/users/{{item.Username}}"> {{item.DisplayName}}</a>
-                        </td>
-                        <td>{{item.Version}} ({{item.VersionDate}})</td>
-                        <td>{{item.IsInstalled}}</td>
-                        <td>{{item.NewVersionAvailable}}</td>
-                        <td>
-                            <button onclick="getModel(this).item.Install$ = null">Install</button>
-                            <button onclick="getModel(this).item.Upgrade$ = null">Upgrade</button>
-                            <button onclick="getModel(this).item.Uninstall$ = null">Uninstall</button>
-                            <button onclick="getModel(this).item.Start$ = null">Start</button>
-                            <button onclick="getModel(this).item.Stop$ = null">Stop</button>
-                        </td>
-                    </tr>
-                </template>
-            </tbody>
-        </table>
-    </template>-->
 </template>

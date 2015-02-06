@@ -200,6 +200,8 @@ namespace AppStoreApp.Server.Partials {
             this.NewVersionAvailable = item.NewVersionAvailable;
             this.SourceUrl = item.SourceUrl;
             this.ImageUrl = item.ImageUrl;
+            this.Heading = item.Heading;
+            this.Rating = item.Rating;
         }
     }
 }

@@ -4,6 +4,8 @@
 	"Url" : "",
 	"SourceID" :"",
 	"SourceUrl" : "",
+	"Heading" : "",
+	"Rating": 0,
 	"Namespace": "", 
 	"Channel" : "",
 	"Version" : "",
