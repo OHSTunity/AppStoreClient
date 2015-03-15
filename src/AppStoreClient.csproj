@@ -81,15 +81,15 @@
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Client\AppStoreClient\css\master.css" />
-    <Content Include="Client\AppStoreClient\app-icon.html" />
-    <Content Include="Client\AppStoreClient\images\AppStoreClient.png" />
-    <Content Include="Client\AppStoreClient\images\spiffygif_18x18.gif" />
-    <Content Include="Client\AppStoreClient\images\spiffygif_28x28.gif" />
-    <Content Include="Client\AppStoreClient\images\spiffygif_32x32.gif" />
-    <Content Include="Client\AppStoreClient\images\spiffygif_64x64.gif" />
-    <Content Include="Client\AppStoreClient\appstoremenu.html" />
-    <Content Include="Client\AppStoreClient\partials\appstoreapps.html" />
+    <Content Include="wwwroot\AppStoreClient\css\master.css" />
+    <Content Include="wwwroot\AppStoreClient\app-icon.html" />
+    <Content Include="wwwroot\AppStoreClient\images\AppStoreClient.png" />
+    <Content Include="wwwroot\AppStoreClient\images\spiffygif_18x18.gif" />
+    <Content Include="wwwroot\AppStoreClient\images\spiffygif_28x28.gif" />
+    <Content Include="wwwroot\AppStoreClient\images\spiffygif_32x32.gif" />
+    <Content Include="wwwroot\AppStoreClient\images\spiffygif_64x64.gif" />
+    <Content Include="wwwroot\AppStoreClient\appstoremenu.html" />
+    <Content Include="wwwroot\AppStoreClient\partials\appstoreapps.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Database\" />

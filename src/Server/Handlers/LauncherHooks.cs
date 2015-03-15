@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PolyjuiceNamespace;
 
 namespace AppStoreApp.Server.Handlers {
 
@@ -14,29 +15,29 @@ namespace AppStoreApp.Server.Handlers {
             #region Launcher hooks
 
             // Menu
-            Starcounter.Handle.GET("/launcher/menu", () => {
+            Starcounter.Handle.GET("/AppStoreClient/menu", () => {
 
                 var menuPage = new AppStoreMenu() {
                     Html = "/AppStoreClient/appstoremenu.html"
                 };
 
                 return menuPage;
-            }, HandlerOptions.ApplicationLevel);
+            });
 
             // App-icon (Launchpad)
-            Starcounter.Handle.GET("/launcher/app-icon", () =>
+            Starcounter.Handle.GET("/AppStoreClient/app-icon", () =>
             {
                 return new AppStoreMenu()
                 {
                     Html = "/AppStoreClient/app-icon.html"
                 };
-            }, HandlerOptions.ApplicationLevel);
+            });
 
             // App-name (Launchpad)
-            Starcounter.Handle.GET("/launcher/app-name", () =>
+            Starcounter.Handle.GET("/AppStoreClient/app-name", () =>
             {
                 return new AppName();
-            }, HandlerOptions.ApplicationLevel);
+            });
 
             // Workspace root (Launchpad)
             Starcounter.Handle.GET( "/AppStoreClient", () =>
@@ -45,6 +46,10 @@ namespace AppStoreApp.Server.Handlers {
                 Starcounter.X.GET("/AppStoreClient/apps", out resp);
                 return resp;
             });
+
+            Polyjuice.Map("/AppStoreClient/menu", "/polyjuice/menu");
+            Polyjuice.Map("/AppStoreClient/app-name", "/polyjuice/app-name");
+            Polyjuice.Map("/AppStoreClient/app-icon", "/polyjuice/app-icon");
 
             #endregion
         }

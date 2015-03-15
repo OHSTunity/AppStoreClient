@@ -14,7 +14,7 @@ xcopy %~dp0src\bin\Debug\*.* %~dp0temp\app
 
 REM Prepare Content
 md %~dp0temp\content
-xcopy %~dp0src\Client %~dp0temp\content /s /e
+xcopy %~dp0src\wwwroot %~dp0temp\content /s /e
 
 REM Copy icon and config
 xcopy %~dp0src\package\*.png %~dp0temp

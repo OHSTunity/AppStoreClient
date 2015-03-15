@@ -1,2 +1,2 @@
 @ECHO OFF
-star --resourcedir="%~dp0Client" "%~dp0bin\Debug\AppStoreClient.exe"
+star --resourcedir="%~dp0wwwroot" "%~dp0bin\Debug\AppStoreClient.exe"
