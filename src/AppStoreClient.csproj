@@ -66,19 +66,11 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Server\AppStoreMenu.json.cs">
-      <DependentUpon>AppStoreMenu.json</DependentUpon>
-    </Compile>
     <Compile Include="Server\Handlers\AppStoreApps.cs" />
     <Compile Include="Server\Handlers\LauncherHooks.cs" />
     <Compile Include="Server\Partials\ListAppStoreAppsPage.json.cs">
       <DependentUpon>ListAppStoreAppsPage.json</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <TypedJSON Include="Server\AppStoreMenu.json">
-      <Generator>MsBuild:Compile</Generator>
-    </TypedJSON>
   </ItemGroup>
   <ItemGroup>
     <Content Include="wwwroot\AppStoreClient\css\master.css" />
@@ -88,7 +80,7 @@
     <Content Include="wwwroot\AppStoreClient\images\spiffygif_28x28.gif" />
     <Content Include="wwwroot\AppStoreClient\images\spiffygif_32x32.gif" />
     <Content Include="wwwroot\AppStoreClient\images\spiffygif_64x64.gif" />
-    <Content Include="wwwroot\AppStoreClient\appstoremenu.html" />
+    <Content Include="wwwroot\AppStoreClient\menu.html" />
     <Content Include="wwwroot\AppStoreClient\partials\appstoreapps.html" />
   </ItemGroup>
   <ItemGroup>

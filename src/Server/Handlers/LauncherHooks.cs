@@ -15,19 +15,14 @@ namespace AppStoreApp.Server.Handlers {
             #region Launcher hooks
 
             // Menu
-            Starcounter.Handle.GET("/AppStoreClient/menu", () => {
-
-                var menuPage = new AppStoreMenu() {
-                    Html = "/AppStoreClient/appstoremenu.html"
-                };
-
-                return menuPage;
+            Handle.GET("/AppStoreClient/menu", () => {
+                return new Page() { Html = "/AppStoreClient/menu.html" };
             });
 
             // App-icon (Launchpad)
             Starcounter.Handle.GET("/AppStoreClient/app-icon", () =>
             {
-                return new AppStoreMenu()
+                return new Page()
                 {
                     Html = "/AppStoreClient/app-icon.html"
                 };
