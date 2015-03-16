@@ -17,8 +17,8 @@ md "%~dp0temp\wwwroot"
 xcopy "%~dp0src\wwwroot" "%~dp0temp\wwwroot" /s /e
 
 REM Copy icon and config
-xcopy "%~dp0package\*.png" "%~dp0temp"
-xcopy "%~dp0package\*.config" "%~dp0temp"
+xcopy "%~dp0src\package\*.png" "%~dp0temp"
+xcopy "%~dp0src\package\*.config" "%~dp0temp"
 
 REM Get folder name for the zip name
 for %%a in ("%~dp0.") do set currentfolder=%%~na
