@@ -1,0 +1,4 @@
+{
+	"Html": "",
+	"AppList": { "$": { "Reuse": "AppStoreApp.Server.Partials.ListAppStoreAppsPage" } }
+}

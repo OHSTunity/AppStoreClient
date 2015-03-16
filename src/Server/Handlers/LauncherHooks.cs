@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PolyjuiceNamespace;
+using AppStoreClient.Server.JSON;
+using AppStoreApp.Server.Partials;
 
 namespace AppStoreApp.Server.Handlers {
 
@@ -35,11 +37,9 @@ namespace AppStoreApp.Server.Handlers {
             });
 
             // Workspace root (Launchpad)
-            Starcounter.Handle.GET( "/AppStoreClient", () =>
-            {
-                Starcounter.Response resp;
-                Starcounter.X.GET("/AppStoreClient/apps", out resp);
-                return resp;
+            Starcounter.Handle.GET("/AppStoreClient", () => {
+                var master = (AppStore)X.GET("/AppStoreClient/standalone");
+                return master.AppList;
             });
 
             Polyjuice.Map("/AppStoreClient/menu", "/polyjuice/menu");
