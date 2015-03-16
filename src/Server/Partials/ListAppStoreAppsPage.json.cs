@@ -196,6 +196,7 @@ namespace AppStoreApp.Server.Partials {
             this.DisplayName = item.DisplayName;
             this.Version = item.Version;
             this.VersionDate = item.VersionDate;
+            this.Description = item.Description;
             this.IsInstalled = item.IsInstalled;
             this.NewVersionAvailable = item.NewVersionAvailable;
             this.SourceUrl = item.SourceUrl;
