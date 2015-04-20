@@ -20,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -32,7 +32,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -64,64 +64,62 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\MainHandlers.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Server\Handlers\AppStoreApps.cs" />
-    <Compile Include="Server\Handlers\LauncherHooks.cs" />
-    <Compile Include="Server\JSON\AppStore.json.cs">
-      <DependentUpon>AppStore.json</DependentUpon>
+    <Compile Include="ViewModels\StandalonePage.json.cs">
+      <DependentUpon>StandalonePage.json</DependentUpon>
     </Compile>
-    <Compile Include="Server\Partials\ListAppStoreAppsPage.json.cs">
+    <Compile Include="ViewModels\ListAppStoreAppsPage.json.cs">
       <DependentUpon>ListAppStoreAppsPage.json</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="wwwroot\AppStoreClient\standalone-appstore.html" />
     <Content Include="wwwroot\AppStoreClient\css\master.css" />
-    <Content Include="wwwroot\AppStoreClient\app-icon.html" />
-    <Content Include="wwwroot\AppStoreClient\images\AppStoreClient.png" />
+    <Content Include="wwwroot\AppStoreClient\images\appstoreclient.png" />
     <Content Include="wwwroot\AppStoreClient\images\spiffygif_18x18.gif" />
     <Content Include="wwwroot\AppStoreClient\images\spiffygif_28x28.gif" />
     <Content Include="wwwroot\AppStoreClient\images\spiffygif_32x32.gif" />
     <Content Include="wwwroot\AppStoreClient\images\spiffygif_64x64.gif" />
-    <Content Include="wwwroot\AppStoreClient\menu.html" />
-    <Content Include="wwwroot\AppStoreClient\partials\appstoreapps.html" />
+    <Content Include="wwwroot\AppStoreClient\viewmodels\AppIconPage.html" />
+    <Content Include="wwwroot\AppStoreClient\viewmodels\AppStoreAppsPage.html" />
+    <Content Include="wwwroot\AppStoreClient\viewmodels\LauncherWrapperPage.html" />
+    <Content Include="wwwroot\AppStoreClient\viewmodels\MenuPage.html" />
+    <Content Include="wwwroot\AppStoreClient\viewmodels\StandalonePage.html" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Database\" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypedJSON Include="Server\Partials\ListAppStoreAppsPage.json">
+    <TypedJSON Include="ViewModels\ApplicationTask.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="Server\JSON\ErrorResponce.json">
+    <TypedJSON Include="ViewModels\AppNamePage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="Server\JSON\ApplicationTask.json">
+    <TypedJSON Include="ViewModels\StandalonePage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="Server\JSON\AppStoreApplication.json">
+    <TypedJSON Include="ViewModels\AppStoreApplication.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="Server\JSON\AppStoreApplications.json">
+    <TypedJSON Include="ViewModels\AppStoreApplications.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="Server\AppName.json">
+    <TypedJSON Include="ViewModels\ErrorResponce.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="Server\JSON\AppStore.json">
+    <TypedJSON Include="ViewModels\ListAppStoreAppsPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>

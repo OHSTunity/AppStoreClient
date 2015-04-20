@@ -1,0 +1,4 @@
+{
+    "Html": "/AppStoreClient/viewmodels/LauncherWrapperPage.html",
+    "CurrentPage": { "$": { "Reuse": "AppStoreClient.ListAppStoreAppsPage" } }
+}
