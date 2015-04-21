@@ -3,215 +3,324 @@
 <link rel="stylesheet" href="/AppStoreClient/css/master.css">
 
 
+<!--
+    Banner size
+google play (android tv)    320px by 180px
+    -->
+
+
 <template>
 
     <Style>
 
 
-        h1 {
-            /*font-family: times, Times New Roman, times-roman, georgia, serif;*/
-            /*font-size: 48px;*/
-            /*line-height: 40px;*/
-            letter-spacing: -1px;
-            font-size: 400%;
-            color: #444444;
-            margin: 0px 0px 10px 10px;
-            padding: 0px;
-            font-weight: 100;
+        .appstorebody {
+            font-family:Verdana, Geneva, sans-serif;
+            background: #B3B3B3;
+        }
+        .appstoreheader {
+        -webkit-box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+        box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+            background-color: rgba(255, 255, 255, 0.9);
+            padding:5px 5px 5px 20px;
         }
 
-        .errorNotice {
-            color: #FFFFFF;
-            padding: 5px 5px 5px 5px;
-            background-color: #F57900;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
+    .appTitle {
+        /*font-family: times, Times New Roman, times-roman, georgia, serif;*/
+        /*font-size: 48px;*/
+        /*line-height: 40px;*/
+        letter-spacing: -1px;
+        font-size: 17px;
+        font-weight: normal;
 
-        .appStoreItemPanel {
-            background:#f8f8f8;
-            display: -webkit-flex;
-            display: flex;
-            -webkit-align-items: center;
-            align-items: center;
-            -webkit-justify-content: left;
-            justify-content: left;
-            -webkit-flex-direction: row;
-            flex-direction: row;
-            -webkit-flex-wrap: wrap;
-            flex-wrap: wrap;
-            -webkit-flex-flow: row wrap;
-            flex-flow: row wrap;
-            -webkit-align-content: flex-end;
-            align-content: flex-end;
-            padding:10px;
-        }
+        color: #1E81DE;
+        margin: 10px 10px 0px 0px;
+        padding: 0px;
+    }
 
-        .appStoreItem {
-            font-family:'Myriad Pro';
-            display: -webkit-flex;
-            display: flex;
-            flex-direction: column;
-            width: 380px;
-            height: 215px;
-            background-color: rgba(255, 255, 255, 1);
-            color: #000000;
-            border: 1px solid rgba(15, 51, 84, 0.36);
-            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.17);
-            border-radius: 4px;
-            box-sizing: border-box;
-            margin: 6px;
-            vertical-align: top;
-            padding: 15px;
-        }
+    .appDescription {
+        letter-spacing: -1px;
+        font-size: 13px;
+        color: #707070;
+        margin: 5px 5px 5px 0px;
+        padding: 0px;
+        font-weight: 100;
+        /*text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-line-clamp: 3;
+-webkit-box-orient: vertical;
 
-        /* App Item Top part */
-        .appStoreItem > div:first-child {
-            display: -webkit-flex;
-            display: flex;
-            -webkit-flex: 0 0 auto;
-            flex: 0 0 auto;
-        }
+*/
+    }
 
-        /* App Image Panel */
-        .appStoreItem > div:first-child > div:nth-child(1) {
-            border-radius: 5px;
-        }
+    .appLogo {
+        margin: 15px 10px 10px 10px;
+    }
 
-        /* App Image */
-        .appStoreItem > div:first-child > div:nth-child(1) > img {
-            padding: 15px;
-            height: auto;
-            width: auto;
-            max-width: 110px;
-            max-height: 110px;
-        }
+    .appLogo > img {
+        max-height:38px
+    }
 
-        /* App Properties  */
-        .appStoreItem > div:first-child > div:nth-child(2) {
-            flex: 1 1 0;
-            margin-left: 10px;
-            margin-right: 10px;
-        }
+    .errorNotice {
+        color: #FFFFFF;
+        padding: 5px 5px 5px 5px;
+        background-color: #F57900;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
 
-        /* App Actions  */
-        .appStoreItem > div:first-child > div:nth-child(3) {
-            display: -webkit-flex;
-            display: flex;
-            flex-direction: column;
-        }
+    .circleBase {
+        border-radius: 50%;
+        behavior: url(PIE.htc); /* remove if you don't care about IE8 */
+    }
+    .type1 {
+        width: 30px;
+        height: 30px;
+        background: #1E81DE;
+        border: 1px solid #1E81DE;
+    }
 
-        /* App Buttons */
-        .appStoreItem > div:first-child > div:nth-child(3) > button {
-            border: 0px;
-            padding: 5px 10px 5px 10px;
-            color: white;
-            border-radius: 2px;
-            min-width: 100px;
-            margin-bottom: 5px;
-            cursor:pointer;
-        }
+    /*Buttons ontop of banner */
+    .operations {
+        position: relative;
+        top: -123px;
+        right: 0px;
+        text-align: right;
+    }
 
-        /* App Item Bottom part */
-        .appStoreItem > div:last-child {
-            -webkit-flex: 1 0 0;
-            flex: 1 0 0;
-            overflow: auto;
-        }
+    .appStoreItemPanel {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-justify-content: left;
+        justify-content: left;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        -webkit-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-flex-flow: row wrap;
+        flex-flow: row wrap;
+        -webkit-align-content: flex-end;
+        align-content: flex-end;
+        padding: 10px;
+    }
 
-        .appStoreItem > div:last-child > h1 {
-            font-size: 130%;
-            margin: 10px 0px 10px 0px;
-            color: #000000;
-        }
+    .appStoreItem {
+        display: -webkit-flex;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        width: 280px;
+        height: 280px;
+        vertical-align: top;
+        padding: 0px;
+        margin: 10px;
+        -webkit-box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+        box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+        border-radius: 0px;
+        border: 0px solid transparent;
+        margin-bottom: 15px;
+        background-color: rgba(255, 255, 255, 1);
+        color: #000000;
+        font-family:Verdana, Geneva, sans-serif;
+    }
 
-        .appStoreItem > div:last-child > p {
-            font-size: 100%;
-            margin: 0px;
-            color: #444444;
-        }
+    /* Banner part */
+    .appStoreItem > div:first-child {
+        /*display: -webkit-flex;
+    display: flex;*/
+        -webkit-flex: 0 0 auto;
+        flex: 0 0 auto;
+        padding: 0px;
+        height: 120px;
+    }
 
-        .appStoreItem table {
-            color: #444444;
-        }
+    /* Middle part*/
+    .appStoreItem > div:nth-child(2) {
+        display: -webkit-flex;
+        display: flex;
+        flex-direction: row;
+        -webkit-flex: 1 0 0;
+        flex: 1 0 0;
+        overflow: hidden;
+    }
+
+    /* Middle Icon part */
+    .appStoreItem > div:nth-child(2) > div:first-child {
+        -webkit-flex: 0 0 auto;
+        flex: 0 0 auto;
+    }
+
+    /* Middle Info part */
+    .appStoreItem > div:nth-child(2) > div:nth-child(2) {
+        -webkit-flex: 1 0 0;
+        flex: 1 0 0;
+        overflow: hidden;
+    }
+
+    /* Bottom part */
+    .appStoreItem > div:last-child  {
+
+        display: -webkit-flex;
+        display: flex;
+        flex-direction: row;
+
+        -webkit-flex: 0 0 auto;
+        flex: 0 0 auto;
+        overflow: auto;
+        background: rgba(0, 0, 0, 0.03);
+    }
+
+    /* Bottom left part */
+    .appStoreItem > div:last-child > div:first-child {
+        -webkit-flex: 1 0 auto;
+        flex: 1 0 auto;
+        overflow: auto;
+    }
+
+    /* Bottom middle part */
+    .appStoreItem > div:last-child > div:nth-child(2) {
+        -webkit-flex: 1 0 auto;
+        flex: 1 0 auto;
+        overflow: auto;
+    }
+
+    /* Bottom right part */
+    .appStoreItem > div:last-child > div:last-child {
+        -webkit-flex: 0 0 auto;
+        flex: 0 0 auto;
+        overflow: auto;
+    }
 
 
-        .appStoreItemPanel a:link {
-            text-decoration: none;
-        }
-
+    /* Button */
+    .appStoreItem button {
+        border: 0px;
+        padding: 5px 10px 5px 10px;
+        color: white;
+        border-radius: 0px;
+        min-width: 80px;
+        margin: 0px;
+        cursor: pointer;
+    }
 
     </Style>
+
+    <div class="appstorebody">
+
 
     <template if="{{ErrorResponce.Text}}">
         <div class="errorNotice">{{ErrorResponce.Text}}</div>
     </template>
 
     <template repeat="{{store in AppStores}}">
+        <div class="appstoreheader">
+        <h1>{{store.DisplayName}} Store</h1>
 
-        <h1>{{store.DisplayName}} store</h1>
+        </div>
 
         <div class="appStoreItemPanel">
 
-            <template repeat="{{item in store.Items}}">
+            <template repeat="{{item, i in store.Items}}">
 
-                    <div class="appStoreItem">
-                        <!-- Top part -->
-                        <div>
-                            <!-- Image -->
-                            <div>
-                                <!--<img style="padding:10px; height: auto; width: auto; max-width: 110px; max-height: 110px;" src="{{item.ImageUrl}}" />-->
-                                <img src="{{item.ImageUrl}}" />
-                            </div>
+                <div class="appStoreItem">
 
-                            <!-- Properties -->
-                            <div >
-                                <table>
-                                    <tbody>
-                                        <tr><td>{{item.DisplayName}}</td></tr>
-                                        <tr><td>Version {{item.Version}}</td></tr>
-                                        <tr><td><star-rating stars="5" rate="0"></star-rating></td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                    <!-- Banner -->
+                    <div>
 
-                            <!-- Actions -->
-                            <div >
-                                <template if="{{item.IsBusy$}}">
-                                    <div style="margin-left:50px" class="spinner medium"></div>
+<!--                        <img style="height:100%; width:100%" src="bg/{{i}}.jpg" />-->
+                        <img style="height:100%; width:100%;" src="/appstoreclient/bg/Banner_{{item.DisplayName}}.jpg" />
+
+                        <div class="operations" >
+                            <template if="{{item.IsBusy$}}">
+
+
+                                <div  class="spinner medium"></div>
+                            </template>
+
+                            <template if="{{!item.IsBusy$}}">
+                                <template if="{{!item.IsInstalled}}">
+                                    <button style="background: #1E81DE" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Install$++">Install</button>
                                 </template>
 
-                                <template if="{{!item.IsBusy$}}">
-                                    <template if="{{!item.IsInstalled}}">
-                                        <button style="background: #1E81DE" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Install$++">Install</button>
-                                    </template>
+<!--                                <template if="{{item.IsInstalled}}">
+                                    <button style="background: #479E13" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Start$++">Start</button>
+                                </template>-->
 
-                                    <template if="{{item.IsInstalled}}">
-                                        <button style="background: #479E13" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Start$++">Start</button>
-                                    </template>
-
-                                    <template if="{{item.NewVersionAvailable && item.IsInstalled}}">
-                                        <button style="background: #1E81DE" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Upgrade$++">Upgrade</button>
-                                    </template>
-
-                                    <template if="{{item.IsInstalled}}">
-                                        <button style="background: #DE3F1E" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Stop$++">Stop</button>
-                                        <button style="background: #DE3F1E" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Uninstall$++">Uninstall</button>
-                                    </template>
+                                <template if="{{item.NewVersionAvailable && item.IsInstalled}}">
+                                    <button style="background: #1E81DE" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Upgrade$++">Upgrade</button>
                                 </template>
-                            </div>
+
+                                <template if="{{item.IsInstalled}}">
+                                    <button style="background: #479E13" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Start$++">Start</button>
+                                    <button style="background: #DE3F1E" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Stop$++">Stop</button>
+                                    <button style="background: #DE3F1E" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Uninstall$++">Uninstall</button>
+                                </template>
+                            </template>
                         </div>
 
-                        <!-- Bottom part, description -->
-                        <div>
-                            <h1>{{item.Heading}}</h1>
-                            <p>{{item.Description}}</p>
-                        </div>
                     </div>
+
+                    <!-- Middle part-->
+    	            <div                         
+                        
+                        <!-- Logo -->
+                        <div class="appLogo" >
+                            <img  src="{{item.ImageUrl}}" />
+                        </div>
+
+                        <!-- Info -->
+                        <div>
+
+                            <template if="{{item.Heading}}">
+                                <h1 class="appTitle">{{item.Heading}}</h1>
+                            </template>
+                            <template if="{{!item.Heading}}">
+                                <h1 class="appTitle">{{item.DisplayName}}</h1>
+                            </template>
+
+                            <div class="appDescription">
+                                {{item.Description}}
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <!-- Bottom part -->
+                    <div>
+
+
+                        <!-- Rateings -->
+                        <div>
+                            
+                        </div>
+                        <div>
+                        </div>
+                        <div>
+                            <div style="margin:5px;text-align:center">
+                                <!--<img height="20px" src="http://blog.sweetiq.com/wp-content/uploads/2012/07/3-5-stars.png" />-->
+                                <img height="15px" src="http://www.designeatrun.com/wp-content/uploads/2014/08/four-and-a-half-star-rating.png" />
+                                <p style="padding:0;margin:0;font-size:10px;text-align:center">(123 ratings)</p>
+
+                            </div>
+                            
+                        </div>
+                        
+                            <!--<star-rating stars="5" rate="0"></star-rating>-->
+                    </div>
+
+	            
+                </div>
+
             </template>
         </div>
     </template>
+    </div>
 
     <link is="puppet-redirect" history url="{{ RedirectUrl }}">
-
+   
 </template>
+
