@@ -4,11 +4,13 @@ using Starcounter.Internal;
 namespace AppStoreClient {
     partial class ListAppStoreAppsPage : Json {
 
-
         public void refreshItems() {
 
-            // Get Available app store items
-            Response response = Node.LocalhostSystemPortNode.GET("/api/admin/appstore/apps");
+
+            string uri = string.Format("/api/admin/database/{0}/appstore/stores", StarcounterEnvironment.DatabaseNameLower);
+
+            // Get Stores
+            Response response = Node.LocalhostSystemPortNode.GET(uri, 5000);
 
             this.AppStores.Clear();
 
@@ -18,22 +20,72 @@ namespace AppStoreClient {
                 this.ErrorResponce.PopulateFromJson(response.Body);
             }
             else {
-                AppStoreApplications apps = new AppStoreApplications();
-                apps.PopulateFromJson(response.Body);
 
-                foreach (var store in apps.Stores) {
+                AppStoreStoresJson stores = new AppStoreStoresJson();
+                stores.PopulateFromJson(response.Body);
+
+                foreach (var store in stores.Items) {
 
                     var storeItem = this.AppStores.Add();
                     storeItem.DisplayName = store.DisplayName;
 
-                    foreach (var appItem in store.Items) {
 
-                        var item = storeItem.Items.Add();
-                        item.SetItemProperties(appItem);
+                    // Get store items
+                    string storeuri = string.Format("/api/admin/database/{0}/appstore/stores/{1}/applications", StarcounterEnvironment.DatabaseNameLower, store.ID);
+                    Response storeApplicationsResponse = Node.LocalhostSystemPortNode.GET(storeuri, 5000);
+                    if (response.StatusCode != (ushort)System.Net.HttpStatusCode.OK) {
+
+                        this.ErrorResponce = new ListAppStoreAppsPage.ErrorResponceJson();
+                        this.ErrorResponce.PopulateFromJson(storeApplicationsResponse.Body);
                     }
+                    else {
+
+                        AppStoreApplications appStoreApplications = new AppStoreApplications();
+                        appStoreApplications.PopulateFromJson(storeApplicationsResponse.Body);
+
+                        foreach (var appItem in appStoreApplications.Items) {
+                            var item = storeItem.Items.Add();
+                            item.SetItemProperties(appItem);
+                        }
+                    }
+
+                    //foreach (var appItem in store.Items) {
+
+                    //    var item = storeItem.Items.Add();
+                    //    item.SetItemProperties(appItem);
+                    //}
                 }
             }
         }
+        //public void refreshItems_OLD_ADMIN() {
+
+        //    // Get Available app store items
+        //    Response response = Node.LocalhostSystemPortNode.GET("/api/admin/appstore/apps");
+
+        //    this.AppStores.Clear();
+
+        //    if (response.StatusCode != (ushort)System.Net.HttpStatusCode.OK) {
+
+        //        this.ErrorResponce = new ListAppStoreAppsPage.ErrorResponceJson();
+        //        this.ErrorResponce.PopulateFromJson(response.Body);
+        //    }
+        //    else {
+        //        AppStoreApplications apps = new AppStoreApplications();
+        //        apps.PopulateFromJson(response.Body);
+
+        //        foreach (var store in apps.Stores) {
+
+        //            var storeItem = this.AppStores.Add();
+        //            storeItem.DisplayName = store.DisplayName;
+
+        //            foreach (var appItem in store.Items) {
+
+        //                var item = storeItem.Items.Add();
+        //                item.SetItemProperties(appItem);
+        //            }
+        //        }
+        //    }
+        //}
 
         #region Base
 

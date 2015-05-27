@@ -1,18 +1,9 @@
 ﻿<link rel="import" href="/sys/puppet-redirect/src/puppet-redirect.html">
 <link rel="import" href="/sys/star-rating/star-rating.html">
 <link rel="stylesheet" href="/AppStoreClient/css/master.css">
-
-
-<!--
-    Banner size
-google play (android tv)    320px by 180px
-    -->
-
-
 <template>
 
     <Style>
-
 
         .appstorebody {
             font-family:Verdana, Geneva, sans-serif;
@@ -32,7 +23,6 @@ google play (android tv)    320px by 180px
         letter-spacing: -1px;
         font-size: 17px;
         font-weight: normal;
-
         color: #1E81DE;
         margin: 10px 10px 0px 0px;
         padding: 0px;
@@ -46,11 +36,9 @@ google play (android tv)    320px by 180px
         padding: 0px;
         font-weight: 100;
         /*text-overflow: ellipsis;
-display: -webkit-box;
--webkit-line-clamp: 3;
--webkit-box-orient: vertical;
-
-*/
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;*/
     }
 
     .appLogo {
@@ -85,6 +73,8 @@ display: -webkit-box;
         position: relative;
         top: -123px;
         right: 0px;
+        margin-top:5px;
+        margin-right:5px;
         text-align: right;
     }
 
@@ -129,7 +119,7 @@ display: -webkit-box;
     /* Banner part */
     .appStoreItem > div:first-child {
         /*display: -webkit-flex;
-    display: flex;*/
+        display: flex;*/
         -webkit-flex: 0 0 auto;
         flex: 0 0 auto;
         padding: 0px;
@@ -193,7 +183,6 @@ display: -webkit-box;
         overflow: auto;
     }
 
-
     /* Button */
     .appStoreItem button {
         border: 0px;
@@ -205,122 +194,158 @@ display: -webkit-box;
         cursor: pointer;
     }
 
+    .linkbutton {
+        border: 0px;
+        padding: 5px 0px 5px 0px;
+        color: white;
+        border-radius: 0px;
+        min-width: 80px;
+        margin: 0px;
+        cursor: pointer;
+        font: normal normal normal 13.3333330154419px/normal Arial;
+        text-decoration-line: inherit;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .errorMessage {
+        background: rgb(182, 40, 40);
+        position: relative;
+        color: white;
+        margin: 10px;
+        -webkit-box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+        box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+        border-radius: 0px;
+        border: 0px solid transparent;
+        padding: 5px;
+    }
+
+
     </Style>
 
-    <div class="appstorebody">
+    <template id="myModel" bind >
 
+        <template repeat="{{database in Databases}}">
 
-    <template if="{{ErrorResponce.Text}}">
-        <div class="errorNotice">{{ErrorResponce.Text}}</div>
-    </template>
+            <div class="appstorebody">
 
-    <template repeat="{{store in AppStores}}">
-        <div class="appstoreheader">
-        <h1>{{store.DisplayName}} Store</h1>
+                <template repeat="{{store in database.AppStoreStores}}">
 
-        </div>
-
-        <div class="appStoreItemPanel">
-
-            <template repeat="{{item, i in store.Items}}">
-
-                <div class="appStoreItem">
-
-                    <!-- Banner -->
-                    <div>
-
-<!--                        <img style="height:100%; width:100%" src="bg/{{i}}.jpg" />-->
-                        <img style="height:100%; width:100%;" src="/appstoreclient/bg/Banner_{{item.DisplayName}}.jpg" />
-
-                        <div class="operations" >
-                            <template if="{{item.IsBusy$}}">
-
-
-                                <div  class="spinner medium"></div>
-                            </template>
-
-                            <template if="{{!item.IsBusy$}}">
-                                <template if="{{!item.IsInstalled}}">
-                                    <button style="background: #1E81DE" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Install$++">Install</button>
-                                </template>
-
-<!--                                <template if="{{item.IsInstalled}}">
-                                    <button style="background: #479E13" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Start$++">Start</button>
-                                </template>-->
-
-                                <template if="{{item.NewVersionAvailable && item.IsInstalled}}">
-                                    <button style="background: #1E81DE" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Upgrade$++">Upgrade</button>
-                                </template>
-
-                                <template if="{{item.IsInstalled}}">
-                                    <button style="background: #479E13" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Start$++">Start</button>
-                                    <button style="background: #DE3F1E" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Stop$++">Stop</button>
-                                    <button style="background: #DE3F1E" onclick="getModel(this).item.IsBusy$ = true;getModel(this).item.Uninstall$++">Uninstall</button>
-                                </template>
-                            </template>
-                        </div>
-
+                    <div class="appstoreheader">
+                        <h1>{{store.DisplayName}} Store</h1>
                     </div>
 
-                    <!-- Middle part-->
-    	            <div                         
+                    <div class="appStoreItemPanel">
+
+                        <template repeat="{{item, i in store.Applications}}">
+
+                            <div class="appStoreItem">
+
+                                <!-- Banner -->
+                                <div>
+                                    <img style="height:100%; width:100%;" src="/appstoreclient/bg/Banner_{{item.DisplayName}}.jpg" />
+                                    
+                                    <div class="operations" >
+
+                                        <template if="{{!item.IsDeployed && item.Status==0}}">
+                                            <button style="background: #1E81DE" onclick="getModel(this).item.Install$++" title="Install Application">Install</button>
+                                        </template>
+
+                                        <template if="{{item.IsDeployed && item.IsRunning && item.Status==0}}">
+                                            <a style="min-width: 80px;background: #479E13" class="linkbutton" href="http://localhost:8080/{{item.AppName}}" target="_blank" role="button" title="Open Application">Open</a>
+                                            <!--<a  href="http://google.com" target="_blank" >Google</a>-->
+                                        </template>
+
+<!--                                        <template if="{{item.IsDeployed && !item.IsRunning}}">
+                                            <button style="background: #479E13" onclick="getModel(this).item.Open$++" title="Restart Application">Restart</button>
+                                        </template>-->
+
+                                        <template if="{{item.IsDeployed && item.Status==0}}">
+                                            <button style="background: #DE3F1E" onclick="getModel(this).item.Delete$++" title="Uninstall Application">Uninstall</button>
+                                        </template>
+
+                                        <template if="{{item.Status!=0}}">
+                                            <button style="background: #1E81DE; padding:2px 0px 0px 0px">
+                                                <div id="floatingCirclesG">
+                                                    <div class="f_circleG" id="frotateG_01"></div>
+                                                    <div class="f_circleG" id="frotateG_02"></div>
+                                                    <div class="f_circleG" id="frotateG_03"></div>
+                                                    <div class="f_circleG" id="frotateG_04"></div>
+                                                    <div class="f_circleG" id="frotateG_05"></div>
+                                                    <div class="f_circleG" id="frotateG_06"></div>
+                                                    <div class="f_circleG" id="frotateG_07"></div>
+                                                    <div class="f_circleG" id="frotateG_08"></div>
+                                                </div>
+                                            </button>
+                                        </template>
+                                    </div>
+
+                               <template if="{{item.HasErrorMessage}}">
+                                    <div class="errorMessage">
+
+                                    {{item.ErrorMessage.Message}}
+
+                                    <template if="{{item.ErrorMessage.HelpLink}}">
+                                        <a href="{{item.ErrorMessage.HelpLink}}" target="_blank">Help</a>.
+                                        View the <a href="#/server/log">log</a> for more details.
+                                    </template>
+                                    </div>
+                                </template>
+                                </div>
+
+                                <!-- Middle part-->
+    	                        <div>                         
                         
-                        <!-- Logo -->
-                        <div class="appLogo" >
-                            <img  src="{{item.ImageUrl}}" />
-                        </div>
+                                    <!-- Logo -->
+                                    <div class="appLogo" >
+                                        <img  src="{{item.ImageUrl}}" />
+                                    </div>
 
-                        <!-- Info -->
-                        <div>
+                                    <!-- Info -->
+                                    <div>
 
-                            <template if="{{item.Heading}}">
-                                <h1 class="appTitle">{{item.Heading}}</h1>
-                            </template>
-                            <template if="{{!item.Heading}}">
-                                <h1 class="appTitle">{{item.DisplayName}}</h1>
-                            </template>
+                                        <template if="{{item.Heading}}">
+                                            <h1 class="appTitle">{{item.Heading}}</h1>
+                                        </template>
+                                        <template if="{{!item.Heading}}">
+                                            <h1 class="appTitle">{{item.DisplayName}}</h1>
+                                        </template>
 
-                            <div class="appDescription">
-                                {{item.Description}}
-                            </div>
+                                        <div class="appDescription">
+                                            {{item.Description}}
+                                        </div>
+                                    </div>
+                                </div>
 
+                                <!-- Bottom part -->
+                                <div>
 
-                        </div>
-
-                    </div>
-
-                    <!-- Bottom part -->
-                    <div>
-
-
-                        <!-- Rateings -->
-                        <div>
+                                    <!-- Ratings -->
+                                    <div>
                             
-                        </div>
-                        <div>
-                        </div>
-                        <div>
-                            <div style="margin:5px;text-align:center">
-                                <!--<img height="20px" src="http://blog.sweetiq.com/wp-content/uploads/2012/07/3-5-stars.png" />-->
-                                <img height="15px" src="http://www.designeatrun.com/wp-content/uploads/2014/08/four-and-a-half-star-rating.png" />
-                                <p style="padding:0;margin:0;font-size:10px;text-align:center">(123 ratings)</p>
-
-                            </div>
+                                    </div>
+                                    <div>
+                                    </div>
+                                    <div>
+                                        <div style="margin:5px;text-align:center">
+                                            <img height="15px" src="/appstoreclient/images/four-and-a-half-star-rating.png" />
+                                            <p style="padding:0;margin:0;font-size:10px;text-align:center">(123 ratings)</p>
+                                        </div>
                             
-                        </div>
-                        
-                            <!--<star-rating stars="5" rate="0"></star-rating>-->
+                                    </div>
+                                        <!--<star-rating stars="5" rate="0"></star-rating>-->
+                                </div>
+                            </div>
+                        </template>
                     </div>
-
-	            
-                </div>
-
-            </template>
-        </div>
+                </template>
+            </div>
+        </template>
     </template>
-    </div>
 
     <link is="puppet-redirect" history url="{{ RedirectUrl }}">
    
+    <puppet-client useWebSocket="true" localVersionPath="" remoteVersionPath="" remoteUrl="http://localhost:8181/api/servermodel" ref="myModel"></puppet-client>
+
 </template>
 
