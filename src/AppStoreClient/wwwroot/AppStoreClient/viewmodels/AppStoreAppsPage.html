@@ -1,13 +1,7 @@
 ﻿<link rel="import" href="/sys/puppet-redirect/src/puppet-redirect.html">
 <link rel="import" href="/sys/star-rating/star-rating.html">
 <link rel="stylesheet" href="/AppStoreClient/css/master.css">
-
-
-<!--
-    Banner size
-google play (android tv)    320px by 180px
-    -->
-
+<script src="/sys/polymer-filters/filter-orderBy.js"></script>
 
 <template>
 
@@ -222,7 +216,7 @@ display: -webkit-box;
 
         <div class="appStoreItemPanel">
 
-            <template repeat="{{item, i in store.Items}}">
+            <template repeat="{{item, i in store.Items | orderBy('DisplayName')}}">
 
                 <div class="appStoreItem">
 
