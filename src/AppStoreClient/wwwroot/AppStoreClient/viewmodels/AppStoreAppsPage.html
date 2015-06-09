@@ -357,8 +357,15 @@
             }
 
             if (!window.appStorePuppet) {
+                var sessionPuppet = document.querySelector("puppet-client");
+                var referer = sessionPuppet.network.referer;
+                var result = referer.match(/^\/__([^/]*)/);
+                var dbname = result[1];
+                if (!dbname) {
+                    throw new Error("Dbname could not be determined from URL " + referer);
+                }
                 var adminPort = 8181;
-                var url = window.location.protocol + "//" + window.location.hostname + ":" + adminPort + "/api/servermodel/default";
+                var url = window.location.protocol + "//" + window.location.hostname + ":" + adminPort + "/api/servermodel/" + dbname;
                 window.appStorePuppet = new Puppet({
                     remoteUrl: url,
                     localVersionPath: "",
