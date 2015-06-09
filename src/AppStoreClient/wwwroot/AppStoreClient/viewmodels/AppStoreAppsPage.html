@@ -223,7 +223,7 @@
 
     </Style>
 
-    <template id="myModel" bind >
+    <template id="appStoreView" bind>
 
         <template repeat="{{database in Databases}}">
 
@@ -345,7 +345,31 @@
 
     <link is="puppet-redirect" history url="{{ RedirectUrl }}">
    
-    <puppet-client useWebSocket="true" localVersionPath="" remoteVersionPath="" remoteUrl="http://localhost:8181/api/servermodel" ref="myModel"></puppet-client>
+    <script>
+        (function () {
+            function bindAppStorePuppet(puppet) {
+                var element = document.getElementById("appStoreView");
+                element.model = puppet.obj;
+                if (!element.bindingDelegate) {
+                    element.bindingDelegate = new PolymerExpressions(); // Make the "item" bindings work
+                }
+            }
 
+            if (!window.appStorePuppet) {
+                var adminPort = 8181;
+                var url = window.location.protocol + "//" + window.location.hostname + ":" + adminPort + "/api/servermodel";
+                window.appStorePuppet = new Puppet({
+                    remoteUrl: url,
+                    useWebSocket: true,
+                    callback: function () {
+                        bindAppStorePuppet(this);
+                    }
+                });
+            }
+            else {
+                bindAppStorePuppet(window.appStorePuppet);
+            }
+        })();
+    </script>
 </template>
 
