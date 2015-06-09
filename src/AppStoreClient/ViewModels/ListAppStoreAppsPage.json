@@ -9,33 +9,5 @@
         "LogEntry": "",
         "ServerCode": 0,
         "Helplink": ""
-    },
-    "Updates": 0,
-    "AppStores": [
-        {
-            "DisplayName": "",
-            "Items": [
-                {
-                    "ID": "",
-                    "SourceUrl": "",
-                    "DisplayName": "",
-                    "Description": "",
-                    "Heading": "",
-                    "Rating": 0,
-                    "Version": "",
-                    "VersionDate": "",
-                    "IsInstalled": false,
-                    "NewVersionAvailable": false,
-                    "ImageUrl": "",
-                    "Install$": 0,
-                    "Uninstall$": 0,
-                    "Upgrade$": 0,
-                    "Start$": 0,
-                    "Stop$": 0,
-                    "IsBusy$": false
-                }
-            ],
-            "Updates": 0
-        }
-    ]
+    }
 }

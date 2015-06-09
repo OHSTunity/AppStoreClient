@@ -1,243 +1,239 @@
-﻿<link rel="import" href="/sys/puppet-redirect/src/puppet-redirect.html">
+<link rel="import" href="/sys/puppet-redirect/src/puppet-redirect.html">
 <link rel="import" href="/sys/star-rating/star-rating.html">
 <link rel="stylesheet" href="/AppStoreClient/css/master.css">
+<script src="/sys/polymer-filters/filter-orderBy.js"></script>
 <template>
 
     <Style>
-
         .appstorebody {
-            font-family:Verdana, Geneva, sans-serif;
+            font-family: Verdana, Geneva, sans-serif;
             background: #B3B3B3;
         }
+
         .appstoreheader {
-        -webkit-box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
-        box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+            -webkit-box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+            box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
             background-color: rgba(255, 255, 255, 0.9);
-            padding:5px 5px 5px 20px;
+            padding: 5px 5px 5px 20px;
         }
 
-    .appTitle {
-        /*font-family: times, Times New Roman, times-roman, georgia, serif;*/
-        /*font-size: 48px;*/
-        /*line-height: 40px;*/
-        letter-spacing: -1px;
-        font-size: 17px;
-        font-weight: normal;
-        color: #1E81DE;
-        margin: 10px 10px 0px 0px;
-        padding: 0px;
-    }
+        .appTitle {
+            /*font-family: times, Times New Roman, times-roman, georgia, serif;*/
+            /*font-size: 48px;*/
+            /*line-height: 40px;*/
+            letter-spacing: -1px;
+            font-size: 17px;
+            font-weight: normal;
+            color: #1E81DE;
+            margin: 10px 10px 0px 0px;
+            padding: 0px;
+        }
 
-    .appDescription {
-        letter-spacing: -1px;
-        font-size: 13px;
-        color: #707070;
-        margin: 5px 5px 5px 0px;
-        padding: 0px;
-        font-weight: 100;
-        /*text-overflow: ellipsis;
+        .appDescription {
+            letter-spacing: -1px;
+            font-size: 13px;
+            color: #707070;
+            margin: 5px 5px 5px 0px;
+            padding: 0px;
+            font-weight: 100;
+            /*text-overflow: ellipsis;
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;*/
-    }
+        }
 
-    .appLogo {
-        margin: 15px 10px 10px 10px;
-    }
+        .appLogo {
+            margin: 15px 10px 10px 10px;
+        }
 
-    .appLogo > img {
-        max-height:38px
-    }
+            .appLogo > img {
+                max-height: 38px;
+            }
 
-    .errorNotice {
-        color: #FFFFFF;
-        padding: 5px 5px 5px 5px;
-        background-color: #F57900;
-        border-radius: 5px;
-        box-sizing: border-box;
-    }
+        .errorNotice {
+            color: #FFFFFF;
+            padding: 5px 5px 5px 5px;
+            background-color: #F57900;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
 
-    .circleBase {
-        border-radius: 50%;
-        behavior: url(PIE.htc); /* remove if you don't care about IE8 */
-    }
-    .type1 {
-        width: 30px;
-        height: 30px;
-        background: #1E81DE;
-        border: 1px solid #1E81DE;
-    }
+        .circleBase {
+            border-radius: 50%;
+            behavior: url(PIE.htc); /* remove if you don't care about IE8 */
+        }
 
-    /*Buttons ontop of banner */
-    .operations {
-        position: relative;
-        top: -123px;
-        right: 0px;
-        margin-top:5px;
-        margin-right:5px;
-        text-align: right;
-    }
+        .type1 {
+            width: 30px;
+            height: 30px;
+            background: #1E81DE;
+            border: 1px solid #1E81DE;
+        }
 
-    .appStoreItemPanel {
-        display: -webkit-flex;
-        display: flex;
-        -webkit-align-items: center;
-        align-items: center;
-        -webkit-justify-content: left;
-        justify-content: left;
-        -webkit-flex-direction: row;
-        flex-direction: row;
-        -webkit-flex-wrap: wrap;
-        flex-wrap: wrap;
-        -webkit-flex-flow: row wrap;
-        flex-flow: row wrap;
-        -webkit-align-content: flex-end;
-        align-content: flex-end;
-        padding: 10px;
-    }
+        /*Buttons ontop of banner */
+        .operations {
+            position: relative;
+            top: -123px;
+            right: 0px;
+            margin-top: 5px;
+            margin-right: 5px;
+            text-align: right;
+        }
 
-    .appStoreItem {
-        display: -webkit-flex;
-        display: flex;
-        flex-direction: column;
-        box-sizing: border-box;
-        width: 280px;
-        height: 280px;
-        vertical-align: top;
-        padding: 0px;
-        margin: 10px;
-        -webkit-box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
-        box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
-        border-radius: 0px;
-        border: 0px solid transparent;
-        margin-bottom: 15px;
-        background-color: rgba(255, 255, 255, 1);
-        color: #000000;
-        font-family:Verdana, Geneva, sans-serif;
-    }
+        .appStoreItemPanel {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: left;
+            justify-content: left;
+            -webkit-flex-direction: row;
+            flex-direction: row;
+            -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -webkit-flex-flow: row wrap;
+            flex-flow: row wrap;
+            -webkit-align-content: flex-end;
+            align-content: flex-end;
+            padding: 10px;
+        }
 
-    /* Banner part */
-    .appStoreItem > div:first-child {
-        /*display: -webkit-flex;
+        .appStoreItem {
+            display: -webkit-flex;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            width: 280px;
+            height: 280px;
+            vertical-align: top;
+            padding: 0px;
+            margin: 10px;
+            -webkit-box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+            box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+            border-radius: 0px;
+            border: 0px solid transparent;
+            margin-bottom: 15px;
+            background-color: rgba(255, 255, 255, 1);
+            color: #000000;
+            font-family: Verdana, Geneva, sans-serif;
+        }
+
+            /* Banner part */
+            .appStoreItem > div:first-child {
+                /*display: -webkit-flex;
         display: flex;*/
-        -webkit-flex: 0 0 auto;
-        flex: 0 0 auto;
-        padding: 0px;
-        height: 120px;
-    }
+                -webkit-flex: 0 0 auto;
+                flex: 0 0 auto;
+                padding: 0px;
+                height: 120px;
+            }
 
-    /* Middle part*/
-    .appStoreItem > div:nth-child(2) {
-        display: -webkit-flex;
-        display: flex;
-        flex-direction: row;
-        -webkit-flex: 1 0 0;
-        flex: 1 0 0;
-        overflow: hidden;
-    }
+            /* Middle part*/
+            .appStoreItem > div:nth-child(2) {
+                display: -webkit-flex;
+                display: flex;
+                flex-direction: row;
+                -webkit-flex: 1 0 0;
+                flex: 1 0 0;
+                overflow: hidden;
+            }
 
-    /* Middle Icon part */
-    .appStoreItem > div:nth-child(2) > div:first-child {
-        -webkit-flex: 0 0 auto;
-        flex: 0 0 auto;
-    }
+                /* Middle Icon part */
+                .appStoreItem > div:nth-child(2) > div:first-child {
+                    -webkit-flex: 0 0 auto;
+                    flex: 0 0 auto;
+                }
 
-    /* Middle Info part */
-    .appStoreItem > div:nth-child(2) > div:nth-child(2) {
-        -webkit-flex: 1 0 0;
-        flex: 1 0 0;
-        overflow: hidden;
-    }
+                /* Middle Info part */
+                .appStoreItem > div:nth-child(2) > div:nth-child(2) {
+                    -webkit-flex: 1 0 0;
+                    flex: 1 0 0;
+                    overflow: hidden;
+                }
 
-    /* Bottom part */
-    .appStoreItem > div:last-child  {
+            /* Bottom part */
+            .appStoreItem > div:last-child {
+                display: -webkit-flex;
+                display: flex;
+                flex-direction: row;
+                -webkit-flex: 0 0 auto;
+                flex: 0 0 auto;
+                overflow: auto;
+                background: rgba(0, 0, 0, 0.03);
+            }
 
-        display: -webkit-flex;
-        display: flex;
-        flex-direction: row;
+                /* Bottom left part */
+                .appStoreItem > div:last-child > div:first-child {
+                    -webkit-flex: 1 0 auto;
+                    flex: 1 0 auto;
+                    overflow: auto;
+                }
 
-        -webkit-flex: 0 0 auto;
-        flex: 0 0 auto;
-        overflow: auto;
-        background: rgba(0, 0, 0, 0.03);
-    }
+                /* Bottom middle part */
+                .appStoreItem > div:last-child > div:nth-child(2) {
+                    -webkit-flex: 1 0 auto;
+                    flex: 1 0 auto;
+                    overflow: auto;
+                }
 
-    /* Bottom left part */
-    .appStoreItem > div:last-child > div:first-child {
-        -webkit-flex: 1 0 auto;
-        flex: 1 0 auto;
-        overflow: auto;
-    }
+                /* Bottom right part */
+                .appStoreItem > div:last-child > div:last-child {
+                    -webkit-flex: 0 0 auto;
+                    flex: 0 0 auto;
+                    overflow: auto;
+                }
 
-    /* Bottom middle part */
-    .appStoreItem > div:last-child > div:nth-child(2) {
-        -webkit-flex: 1 0 auto;
-        flex: 1 0 auto;
-        overflow: auto;
-    }
+            /* Button */
+            .appStoreItem button {
+                border: 0px;
+                padding: 5px 10px 5px 10px;
+                color: white;
+                border-radius: 0px;
+                min-width: 80px;
+                margin: 0px;
+                cursor: pointer;
+            }
 
-    /* Bottom right part */
-    .appStoreItem > div:last-child > div:last-child {
-        -webkit-flex: 0 0 auto;
-        flex: 0 0 auto;
-        overflow: auto;
-    }
+        .linkbutton {
+            border: 0px;
+            padding: 5px 0px 5px 0px;
+            color: white;
+            border-radius: 0px;
+            min-width: 80px;
+            margin: 0px;
+            cursor: pointer;
+            font: normal normal normal 13.3333330154419px/normal Arial;
+            text-decoration-line: inherit;
+            display: inline-block;
+            text-align: center;
+        }
 
-    /* Button */
-    .appStoreItem button {
-        border: 0px;
-        padding: 5px 10px 5px 10px;
-        color: white;
-        border-radius: 0px;
-        min-width: 80px;
-        margin: 0px;
-        cursor: pointer;
-    }
-
-    .linkbutton {
-        border: 0px;
-        padding: 5px 0px 5px 0px;
-        color: white;
-        border-radius: 0px;
-        min-width: 80px;
-        margin: 0px;
-        cursor: pointer;
-        font: normal normal normal 13.3333330154419px/normal Arial;
-        text-decoration-line: inherit;
-        display: inline-block;
-        text-align: center;
-    }
-
-    .errorMessage {
-        background: rgb(182, 40, 40);
-        position: relative;
-        color: white;
-        margin: 10px;
-        -webkit-box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
-        box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
-        border-radius: 0px;
-        border: 0px solid transparent;
-        padding: 5px;
-    }
-
-
+        .errorMessage {
+            background: rgb(182, 40, 40);
+            position: relative;
+            color: white;
+            margin: 10px;
+            -webkit-box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+            box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+            border-radius: 0px;
+            border: 0px solid transparent;
+            padding: 5px;
+        }
     </Style>
 
     <template id="appStoreView" bind>
 
-        <template repeat="{{database in Databases}}">
+        <!--<template repeat="{{database in Databases}}">-->
 
             <div class="appstorebody">
 
-                <template repeat="{{store in database.AppStoreStores}}">
+                <template repeat="{{store in AppStoreStores}}">
 
                     <div class="appstoreheader">
                         <h1>{{store.DisplayName}} Store</h1>
                     </div>
-
                     <div class="appStoreItemPanel">
-
-                        <template repeat="{{item, i in store.Applications}}">
+                        <template repeat="{{item, i in store.Applications | orderBy('DisplayName')}}">
 
                             <div class="appStoreItem">
 
@@ -298,7 +294,7 @@
                         
                                     <!-- Logo -->
                                     <div class="appLogo" >
-                                        <img  src="{{item.ImageUrl}}" />
+                                        <img  ng-src="{{item.ImageUrl}}" />
                                     </div>
 
                                     <!-- Info -->
@@ -339,12 +335,17 @@
                         </template>
                     </div>
                 </template>
+
+
             </div>
-        </template>
+        <!--</template>-->
+
     </template>
 
     <link is="puppet-redirect" history url="{{ RedirectUrl }}">
    
+<!--<puppet-client useWebSocket="true" localVersionPath="" remoteVersionPath="" remoteUrl="http://localhost:8181/api/servermodel/default" ref="appStoreView"></puppet-client>-->
+
     <script>
         (function () {
             function bindAppStorePuppet(puppet) {
@@ -357,9 +358,11 @@
 
             if (!window.appStorePuppet) {
                 var adminPort = 8181;
-                var url = window.location.protocol + "//" + window.location.hostname + ":" + adminPort + "/api/servermodel";
+                var url = window.location.protocol + "//" + window.location.hostname + ":" + adminPort + "/api/servermodel/default";
                 window.appStorePuppet = new Puppet({
                     remoteUrl: url,
+                    localVersionPath: "",
+                    remoteVersionPath: "",
                     useWebSocket: true,
                     callback: function () {
                         bindAppStorePuppet(this);
