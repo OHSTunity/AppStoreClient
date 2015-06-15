@@ -227,13 +227,15 @@
 
             <div class="appstorebody">
 
+
                 <template repeat="{{store in AppStoreStores}}">
 
                     <div class="appstoreheader">
                         <h1>{{store.DisplayName}} Store</h1>
                     </div>
                     <div class="appStoreItemPanel">
-                        <template repeat="{{item, i in store.Applications | orderBy('DisplayName')}}">
+                        <!--<template repeat="{{item in store.Applications | orderBy('DisplayName')}}">-->
+                        <template repeat="{{item in store.Applications}}">
 
                             <div class="appStoreItem">
 
@@ -373,6 +375,7 @@
                     useWebSocket: true,
                     callback: function () {
                         bindAppStorePuppet(this);
+                        this.obj.RefreshAppStoreStores$++;
                     }
                 });
             }
