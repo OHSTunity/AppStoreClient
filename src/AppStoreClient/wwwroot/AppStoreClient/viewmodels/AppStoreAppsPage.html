@@ -223,7 +223,6 @@
 
     <template id="appStoreView" bind>
 
-        <!--<template repeat="{{database in Databases}}">-->
 
             <div class="appstorebody">
 
@@ -340,13 +339,11 @@
 
 
             </div>
-        <!--</template>-->
 
     </template>
 
     <link is="puppet-redirect" history url="{{ RedirectUrl }}">
-   
-<!--<puppet-client useWebSocket="true" localVersionPath="" remoteVersionPath="" remoteUrl="http://localhost:8181/api/servermodel/default" ref="appStoreView"></puppet-client>-->
+  
 
     <script>
         (function () {
@@ -357,7 +354,6 @@
                     element.bindingDelegate = new PolymerExpressions(); // Make the "item" bindings work
                 }
             }
-
             if (!window.appStorePuppet) {
                 var sessionPuppet = document.querySelector("puppet-client");
                 var referer = sessionPuppet.network.referer;
