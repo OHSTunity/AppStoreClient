@@ -1,5 +1,5 @@
 ﻿{
-	"$": { Namespace: "AppStoreClient" },
+	"$": { "Namespace": "AppStoreClient" },
 	"Items": [
 		{
 			"$" : { "Reuse" : "AppStoreClient.AppStoreApplication" }
