@@ -61,7 +61,7 @@ namespace AppStoreClient {
                     Uri = request.Uri
                 };
 
-                page.refreshItems();
+//                page.refreshItems();
                 master.CurrentPage = page;
 
                 return master;

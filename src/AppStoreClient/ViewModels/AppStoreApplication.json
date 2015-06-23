@@ -1,26 +1,25 @@
 ﻿{
-    "$": { "Namespace": "AppStoreClient" },
-    "ID": "",
-    "Url": "",
-    "SourceID": "",
-    "SourceUrl": "",
-    "Heading": "",
-    "Rating": 0,
-    "Namespace": "",
-    "Channel": "",
-    "Version": "",
-    "DisplayName": "",
-    "Description": "",
-    "Company": "",
-    "VersionDate": "",
-    "Executable": "",
-    "ResourceFolder": "",
-    "Size": 0,
-    "ImageUrl": "",
-    "IsInstalled": false,
-    "NewVersionAvailable": false,
-    "LatestVersion": {
-        "ID": "",
-        "Url": ""
-    }
+	"$": { Namespace: "AppStoreClient" },
+	"ID": "",	// Local install ID is App is Installed otherwice a Temp ID
+	"SourceID" :"",
+	"SourceUrl" : "",
+	"Namespace": "", 
+	"Channel" : "",
+	"Version" : "",
+	"DisplayName": "", 
+	"Description": "",
+	"Company" : "",
+	"Heading": "",
+	"Rating":0,
+	"VersionDate" : "",
+	"Executable" : "",
+	"ResourceFolder" : "",
+	"Size" : 0,
+	"ImageUrl" : "",
+	"IsInstalled" : false,
+	"NewVersionAvailable" : false,
+	"LatestVersion": {
+		"ID" : "",		// NOTE: This is a remote appstore id
+		"Url" : ""
+	}
 }

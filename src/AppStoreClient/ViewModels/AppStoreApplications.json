@@ -1,16 +1,8 @@
 ﻿{
-    "$": { "Namespace": "AppStoreClient" },
-    "Stores": [
-        {
-            "ID": "",
-            "DisplayName": "",
-            "Items": [
-                {
-                    "$": { "Reuse": "AppStoreClient.AppStoreApplication" }
-                }
-            ],
-            "Updates": 0,
-        }
-    ],
-    "Updates": 0
+	"$": { Namespace: "AppStoreClient" },
+	"Items": [
+		{
+			"$" : { "Reuse" : "AppStoreClient.AppStoreApplication" }
+		}
+	]
 }

@@ -87,7 +87,11 @@
     <Content Include="wwwroot\AppStoreClient\viewmodels\MenuPage.html" />
     <Content Include="wwwroot\AppStoreClient\viewmodels\StandalonePage.html" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <TypedJSON Include="ViewModels\AppStoreStoresJson.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="ViewModels\ApplicationTask.json">
       <Generator>MsBuild:Compile</Generator>
@@ -120,6 +124,11 @@
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="ViewModels\ListAppStoreAppsPage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="ViewModels\AppStoreStoreJson.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
