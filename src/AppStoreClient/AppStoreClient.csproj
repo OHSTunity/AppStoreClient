@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="wwwroot\AppStoreClient\css\master.css" />
+    <Content Include="wwwroot\AppStoreClient\elements\app-store-client-root.html" />
     <Content Include="wwwroot\AppStoreClient\images\appstoreclient.png" />
     <Content Include="wwwroot\AppStoreClient\images\spiffygif_18x18.gif" />
     <Content Include="wwwroot\AppStoreClient\images\spiffygif_28x28.gif" />

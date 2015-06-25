@@ -1,7 +1,7 @@
 <link rel="import" href="/sys/puppet-redirect/src/puppet-redirect.html">
 <link rel="import" href="/sys/star-rating/star-rating.html">
+<link rel="import" href="/AppStoreClient/elements/app-store-client-root.html" />
 <link rel="stylesheet" href="/AppStoreClient/css/master.css">
-<script src="/sys/polymer-filters/filter-orderBy.js"></script>
 <template>
 
     <style>
@@ -16,206 +16,11 @@
             background-color: rgba(255, 255, 255, 0.9);
             padding: 5px 5px 5px 20px;
         }
-
-        .appTitle {
-            /*font-family: times, Times New Roman, times-roman, georgia, serif;*/
-            /*font-size: 48px;*/
-            /*line-height: 40px;*/
-            letter-spacing: -1px;
-            font-size: 17px;
-            font-weight: normal;
-            color: #1E81DE;
-            margin: 10px 10px 0px 0px;
-            padding: 0px;
-        }
-
-        .appDescription {
-            letter-spacing: -1px;
-            font-size: 13px;
-            color: #707070;
-            margin: 5px 5px 5px 0px;
-            padding: 0px;
-            font-weight: 100;
-            /*text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;*/
-        }
-
-        .appLogo {
-            margin: 15px 10px 10px 10px;
-        }
-
-        .appLogo > img {
-            max-height: 38px;
-        }
-
-        .errorNotice {
-            color: #FFFFFF;
-            padding: 5px 5px 5px 5px;
-            background-color: #F57900;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-
-        .circleBase {
-            border-radius: 50%;
-            behavior: url(PIE.htc); /* remove if you don't care about IE8 */
-        }
-
-        .type1 {
-            width: 30px;
-            height: 30px;
-            background: #1E81DE;
-            border: 1px solid #1E81DE;
-        }
-        /*Buttons ontop of banner */
-        .operations {
-            position: relative;
-            top: -123px;
-            right: 0px;
-            margin-top: 5px;
-            margin-right: 5px;
-            text-align: right;
-        }
-
-        .appStoreItemPanel {
-            display: -webkit-flex;
-            display: flex;
-            -webkit-align-items: center;
-            align-items: center;
-            -webkit-justify-content: left;
-            justify-content: left;
-            -webkit-flex-direction: row;
-            flex-direction: row;
-            -webkit-flex-wrap: wrap;
-            flex-wrap: wrap;
-            -webkit-flex-flow: row wrap;
-            flex-flow: row wrap;
-            -webkit-align-content: flex-end;
-            align-content: flex-end;
-            padding: 10px;
-        }
-
-        .appStoreItem {
-            display: -webkit-flex;
-            display: flex;
-            flex-direction: column;
-            box-sizing: border-box;
-            width: 280px;
-            height: 280px;
-            vertical-align: top;
-            padding: 0px;
-            margin: 10px;
-            -webkit-box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
-            box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
-            border-radius: 0px;
-            border: 0px solid transparent;
-            margin-bottom: 15px;
-            background-color: rgba(255, 255, 255, 1);
-            color: #000000;
-            font-family: Verdana, Geneva, sans-serif;
-        }
-        /* Banner part */
-        .appStoreItem > div:first-child {
-            /*display: -webkit-flex;
-        display: flex;*/
-            -webkit-flex: 0 0 auto;
-            flex: 0 0 auto;
-            padding: 0px;
-            height: 120px;
-        }
-        /* Middle part*/
-        .appStoreItem > div:nth-child(2) {
-            display: -webkit-flex;
-            display: flex;
-            flex-direction: row;
-            -webkit-flex: 1 0 0;
-            flex: 1 0 0;
-            overflow: hidden;
-        }
-        /* Middle Icon part */
-        .appStoreItem > div:nth-child(2) > div:first-child {
-            -webkit-flex: 0 0 auto;
-            flex: 0 0 auto;
-        }
-        /* Middle Info part */
-        .appStoreItem > div:nth-child(2) > div:nth-child(2) {
-            -webkit-flex: 1 0 0;
-            flex: 1 0 0;
-            overflow: hidden;
-        }
-        /* Bottom part */
-        .appStoreItem > div:last-child {
-            display: -webkit-flex;
-            display: flex;
-            flex-direction: row;
-            -webkit-flex: 0 0 auto;
-            flex: 0 0 auto;
-            overflow: auto;
-            background: rgba(0, 0, 0, 0.03);
-        }
-        /* Bottom left part */
-        .appStoreItem > div:last-child > div:first-child {
-            -webkit-flex: 1 0 auto;
-            flex: 1 0 auto;
-            overflow: auto;
-        }
-        /* Bottom middle part */
-        .appStoreItem > div:last-child > div:nth-child(2) {
-            -webkit-flex: 1 0 auto;
-            flex: 1 0 auto;
-            overflow: auto;
-        }
-        /* Bottom right part */
-        .appStoreItem > div:last-child > div:last-child {
-            -webkit-flex: 0 0 auto;
-            flex: 0 0 auto;
-            overflow: auto;
-        }
-        /* Button */
-        .appStoreItem button {
-            border: 0px;
-            padding: 5px 10px 5px 10px;
-            color: white;
-            border-radius: 0px;
-            min-width: 80px;
-            margin: 0px;
-            cursor: pointer;
-        }
-
-        .linkbutton {
-            border: 0px;
-            padding: 5px 0px 5px 0px;
-            color: white;
-            border-radius: 0px;
-            min-width: 80px;
-            margin: 0px;
-            cursor: pointer;
-            font: normal normal normal 13.3333330154419px/normal Arial;
-            text-decoration-line: inherit;
-            display: inline-block;
-            text-align: center;
-        }
-
-        .errorMessage {
-            background: rgb(182, 40, 40);
-            position: relative;
-            color: white;
-            margin: 10px;
-            -webkit-box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
-            box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
-            border-radius: 0px;
-            border: 0px solid transparent;
-            padding: 5px;
-        }
     </style>
 
     <template id="appStoreView" bind>
 
-
         <div class="appstorebody">
-
 
             <template repeat="{{store in AppStoreStores}}">
 
@@ -224,117 +29,15 @@
                 </div>
                 <div class="appStoreItemPanel">
                     <!--<template repeat="{{item in store.Applications | orderBy('DisplayName')}}">-->
-                    <template repeat="{{item in store.Applications}}">
-
-                        <div class="appStoreItem">
-
-                            <!-- Banner -->
-                            <div>
-                                <img style="height:100%; width:100%;" src="/appstoreclient/bg/Banner_{{item.DisplayName}}.jpg" />
-
-                                <div class="operations">
-
-                                    <template if="{{!item.IsDeployed && item.Status==0}}">
-                                        <button style="background: #1E81DE" onclick="getModel(this).item.Install$++" title="Install Application">Install</button>
-                                    </template>
-
-                                    <template if="{{item.IsDeployed && item.IsRunning && item.Status==0}}">
-                                        <a style="min-width: 80px;background: #479E13" class="linkbutton" href="http://localhost:8080/{{item.AppName}}" target="_blank" role="button" title="Open Application">Open</a>
-                                        <!--<a  href="http://google.com" target="_blank" >Google</a>-->
-                                    </template>
-
-                                    <!--                                        <template if="{{item.IsDeployed && !item.IsRunning}}">
-                                                                                <button style="background: #479E13" onclick="getModel(this).item.Open$++" title="Restart Application">Restart</button>
-                                                                            </template>-->
-
-                                    <template if="{{item.IsDeployed && item.Status==0}}">
-                                        <button style="background: #DE3F1E" onclick="getModel(this).item.Delete$++" title="Uninstall Application">Uninstall</button>
-                                    </template>
-
-                                    <template if="{{item.Status!=0}}">
-                                        <button style="background: #1E81DE; padding:2px 0px 0px 0px">
-                                            <div id="floatingCirclesG">
-                                                <div class="f_circleG" id="frotateG_01"></div>
-                                                <div class="f_circleG" id="frotateG_02"></div>
-                                                <div class="f_circleG" id="frotateG_03"></div>
-                                                <div class="f_circleG" id="frotateG_04"></div>
-                                                <div class="f_circleG" id="frotateG_05"></div>
-                                                <div class="f_circleG" id="frotateG_06"></div>
-                                                <div class="f_circleG" id="frotateG_07"></div>
-                                                <div class="f_circleG" id="frotateG_08"></div>
-                                            </div>
-                                        </button>
-                                    </template>
-                                </div>
-
-                                <template if="{{item.HasErrorMessage}}">
-                                    <div class="errorMessage">
-
-                                        {{item.ErrorMessage.Message}}
-
-                                        <template if="{{item.ErrorMessage.HelpLink}}">
-                                            <a href="{{item.ErrorMessage.HelpLink}}" target="_blank">Help</a>.
-                                            View the
-                                            <a href="#/server/log">log</a> for more details.
-                                        </template>
-                                    </div>
-                                </template>
-                            </div>
-
-                            <!-- Middle part-->
-                            <div>
-
-                                <!-- Logo -->
-                                <div class="appLogo">
-                                    <img ng-src="{{item.ImageUrl}}" />
-                                </div>
-
-                                <!-- Info -->
-                                <div>
-
-                                    <template if="{{item.Heading}}">
-                                        <h1 class="appTitle">{{item.Heading}}</h1>
-                                    </template>
-                                    <template if="{{!item.Heading}}">
-                                        <h1 class="appTitle">{{item.DisplayName}}</h1>
-                                    </template>
-
-                                    <div class="appDescription">
-                                        {{item.Description}}
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Bottom part -->
-                            <div>
-
-                                <!-- Ratings -->
-                                <div>
-
-                                </div>
-                                <div>
-                                </div>
-                                <div>
-                                    <div style="margin:5px;text-align:center">
-                                        <img height="15px" src="/appstoreclient/images/four-and-a-half-star-rating.png" />
-                                        <p style="padding:0;margin:0;font-size:10px;text-align:center">(123 ratings)</p>
-                                    </div>
-
-                                </div>
-                                <!--<star-rating stars="5" rate="0"></star-rating>-->
-                            </div>
-                        </div>
-                    </template>
+                    <app-store-client-root applications="{{store.Applications}}"></app-store-client-root>
                 </div>
             </template>
-
 
         </div>
 
     </template>
 
     <link is="puppet-redirect" history url="{{ RedirectUrl }}">
-
 
     <script>
         (function () {
