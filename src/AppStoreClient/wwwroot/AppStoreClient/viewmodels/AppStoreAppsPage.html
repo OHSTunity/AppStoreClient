@@ -50,7 +50,7 @@
             }
             if (!window.appStorePuppet) {
                 var sessionPuppet = document.querySelector("puppet-client");
-                var referer = sessionPuppet.network.referer;
+                var referer = sessionPuppet.network.remoteUrl.pathname;
                 var result = referer.match(/^\/__([^/]*)/);
                 var dbname = result[1];
                 if (!dbname) {
@@ -65,7 +65,11 @@
                     useWebSocket: true,
                     callback: function () {
                         bindAppStorePuppet(this);
-                        this.obj.RefreshAppStoreStores$++;
+                    },
+                    onSocketStateChanged: function (state, url) {
+                        if (state == 1) {
+                            this.obj.RefreshAppStoreStores$++;
+                        }
                     }
                 });
             }
