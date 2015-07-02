@@ -65,11 +65,7 @@
                     useWebSocket: true,
                     callback: function () {
                         bindAppStorePuppet(this);
-                    },
-                    onSocketStateChanged: function (state, url) {
-                        if (state == 1) {
-                            this.obj.RefreshAppStoreStores$++;
-                        }
+                        this.obj.RefreshAppStoreStores$++;
                     }
                 });
             }
