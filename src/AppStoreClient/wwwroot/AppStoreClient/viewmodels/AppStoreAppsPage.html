@@ -66,6 +66,21 @@
                     callback: function () {
                         bindAppStorePuppet(this);
                         this.obj.RefreshAppStoreStores$++;
+                    },
+                    onPatchReceived: function (data, url, method) {
+                        if (!data) {
+                            return;
+                        }
+
+                        var patches = JSON.parse(data);
+
+                        console.log(patches);
+
+                        for (var i = 0, l = patches.length; i < l; i++) {
+                            if (/.*IsInstalled/gi.test(patches[i].path)) {
+                                window.location = window.location.href;
+                            }
+                        }
                     }
                 });
             }
