@@ -3,6 +3,8 @@
     "Uri": "",
     "Html": "",
     "RedirectUrl": "",
+    "DisplayStores": [ "" ],
+    "DisplayAllStores": false,
     "ErrorResponce": {
         "Text": "",
         "StackTrace": "",

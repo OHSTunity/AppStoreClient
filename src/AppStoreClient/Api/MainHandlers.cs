@@ -61,10 +61,50 @@ namespace AppStoreClient {
                     Uri = request.Uri
                 };
 
-//                page.refreshItems();
+                StoreSetting setting = Db.SQL<StoreSetting>("SELECT ss FROM AppStoreClient.StoreSetting ss").First;
+
+                if (setting != null && setting.DisplayAllStores) {
+                    page.DisplayAllStores = true;
+                } else if (setting == null || string.IsNullOrEmpty(setting.DisplayStores)) {
+                    page.DisplayStores.Add().StringValue = "starcounter";
+                    page.DisplayAllStores = false;
+                } else {
+                    foreach (string s in setting.DisplayStores.Split(new char[] { ',', ';' })) {
+                        string name = s.Trim();
+
+                        if (string.IsNullOrEmpty(name)) {
+                            continue;
+                        }
+
+                        page.DisplayStores.Add().StringValue = name;
+                    }
+                }
+                
                 master.CurrentPage = page;
 
                 return master;
+            });
+
+            Handle.GET("/appstoreclient/setdisplaystores/{?}", (string value) => {
+                StoreSetting setting = Db.SQL<StoreSetting>("SELECT ss FROM AppStoreClient.StoreSetting ss").First;
+
+                value = System.Web.HttpUtility.UrlDecode(value);
+
+                Db.Transact(() => {
+                    if (setting == null) {
+                        setting = new StoreSetting();
+                    }
+
+                    if (value == "all") {
+                        setting.DisplayAllStores = true;
+                        setting.DisplayStores = null;
+                    } else {
+                        setting.DisplayAllStores = false;
+                        setting.DisplayStores = value;
+                    }
+                });
+
+                return 200;
             });
 
             Polyjuice.Map("/appstoreclient/menu", "/polyjuice/menu");

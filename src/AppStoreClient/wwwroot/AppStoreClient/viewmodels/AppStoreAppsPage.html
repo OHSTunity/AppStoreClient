@@ -22,15 +22,15 @@
 
         <div class="appstorebody">
 
-            <template repeat="{{store in AppStoreStores}}">
-
-                <div class="appstoreheader">
-                    <h1>{{store.DisplayName}} Store</h1>
-                </div>
-                <div class="appStoreItemPanel">
-                    <!--<template repeat="{{item in store.Applications | orderBy('DisplayName')}}">-->
-                    <app-store-client-root applications="{{store.Applications}}"></app-store-client-root>
-                </div>
+            <template repeat="{{store in obj.AppStoreStores}}">
+                <template if="{{getIsStoreVisible(store)}}">
+                    <div class="appstoreheader">
+                        <h1>{{store.DisplayName}} Store</h1>
+                    </div>
+                    <div class="appStoreItemPanel">
+                        <app-store-client-root applications="{{store.Applications}}"></app-store-client-root>
+                    </div>
+                </template>
             </template>
 
         </div>
@@ -43,7 +43,13 @@
         (function () {
             function bindAppStorePuppet(puppet) {
                 var element = document.getElementById("appStoreView");
-                element.model = puppet.obj;
+                var parentModel = getModel(element);
+
+                element.model.obj = puppet.obj;
+                element.model.getIsStoreVisible = function (store) {
+                    return parentModel.DisplayAllStores || parentModel.DisplayStores.indexOf(store.DisplayName) >= 0;
+                };
+
                 if (!element.bindingDelegate) {
                     element.bindingDelegate = new PolymerExpressions(); // Make the "item" bindings work
                 }
@@ -73,8 +79,6 @@
                         }
 
                         var patches = JSON.parse(data);
-
-                        console.log(patches);
 
                         for (var i = 0, l = patches.length; i < l; i++) {
                             if (/.*IsInstalled/gi.test(patches[i].path)) {
