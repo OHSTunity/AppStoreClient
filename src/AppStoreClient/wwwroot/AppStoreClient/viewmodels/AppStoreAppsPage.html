@@ -62,7 +62,7 @@
                 if (!dbname) {
                     throw new Error("Dbname could not be determined from URL " + referer);
                 }
-                var adminPort = 8181;
+                var adminPort = 8182;
                 var url = window.location.protocol + "//" + window.location.hostname + ":" + adminPort + "/api/servermodel/" + dbname;
                 window.appStorePuppet = new Puppet({
                     remoteUrl: url,
