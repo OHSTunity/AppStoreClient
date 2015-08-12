@@ -1,4 +1,5 @@
 ﻿<link rel="import" href="/sys/polymer/polymer.html" />
+<link rel="import" href="/sys/juicy-markdown/juicy-markdown.html" />
 
 <polymer-element name="app-store-client-root" attributes="applications">
     <template>
@@ -46,7 +47,7 @@
                 font-size: 13px;
                 line-height: 19px;
                 color: #707070;
-                margin: 5px 5px 5px 0px;
+                margin: -10px 5px -10px 0px;
                 padding: 0px;
                 font-weight: 100;
                 /*text-overflow: ellipsis;
@@ -282,7 +283,7 @@
                         </template>
 
                         <div class="appDescription">
-                            {{item.Description}}
+                            <juicy-markdown value="{{item.Description}}"></juicy-markdown>
                         </div>
                     </div>
                 </div>
