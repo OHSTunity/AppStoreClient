@@ -1,7 +1,7 @@
-AppStoreClient
+App Store Client
 ==============
 
-App Store Client
+Mix and match the best of breed apps that share data on a shared screen.
 
 ## Instructions
 
