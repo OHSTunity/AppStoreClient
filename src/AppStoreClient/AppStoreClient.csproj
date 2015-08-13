@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Api\MainHandlers.cs" />
     <Compile Include="Database\StoreSetting.cs" />
+    <Compile Include="Helpers\DefaultStyles.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\StandalonePage.json.cs">
@@ -77,6 +78,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Content\default-layout.sql" />
     <Content Include="wwwroot\AppStoreClient\css\master.css" />
     <Content Include="wwwroot\AppStoreClient\elements\app-store-client-root.html" />
     <Content Include="wwwroot\AppStoreClient\images\appstoreclient.png" />
