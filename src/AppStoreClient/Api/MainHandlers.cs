@@ -9,6 +9,8 @@ using PolyjuiceNamespace;
 namespace AppStoreClient {
     internal class MainHandlers {
         public void Register() {
+            string[] defaultVisibleStores = new string[] { "Developer Samples", "Essentials" };
+
             // Menu
             Handle.GET("/appstoreclient/menu", () => {
                 return new Page() { Html = "/AppStoreClient/viewmodels/MenuPage.html" };
@@ -66,7 +68,10 @@ namespace AppStoreClient {
                 if (setting != null && setting.DisplayAllStores) {
                     page.DisplayAllStores = true;
                 } else if (setting == null || string.IsNullOrEmpty(setting.DisplayStores)) {
-                    page.DisplayStores.Add().StringValue = "starcounter";
+                    foreach (var store in defaultVisibleStores) {
+                        page.DisplayStores.Add().StringValue = store;
+                    }
+                    
                     page.DisplayAllStores = false;
                 } else {
                     foreach (string s in setting.DisplayStores.Split(new char[] { ',', ';' })) {
