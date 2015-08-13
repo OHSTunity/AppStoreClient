@@ -230,7 +230,7 @@
                                                                 <button style="background: #479E13" onclick="getModel(this).item.Open$++" title="Restart Application">Restart</button>
                                                             </template>-->
 
-                        <template if="{{item.IsDeployed && item.Status==0}}">
+                        <template if="{{item.CanBeUninstalled && item.IsDeployed && item.Status==0}}">
                             <button style="background: #DE3F1E" onclick="getModel(this).item.Delete$++" title="Uninstall Application">Uninstall</button>
                         </template>
 
