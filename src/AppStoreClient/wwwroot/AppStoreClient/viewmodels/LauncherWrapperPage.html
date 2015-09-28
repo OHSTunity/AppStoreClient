@@ -1,7 +1,6 @@
-﻿<!--<link rel="stylesheet" href="/sys/bootswatch/paper/bootstrap.css" />-->
-
-<template>
-    <template bind="{{CurrentPage}}">
-        <template is="imported-template" content="{{Html}}"></template>
+﻿<template>
+    <template is="dom-bind">
+        <starcounter-include partial="{{model.CurrentPage}}"></starcounter-include>
+        <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
     </template>
 </template>

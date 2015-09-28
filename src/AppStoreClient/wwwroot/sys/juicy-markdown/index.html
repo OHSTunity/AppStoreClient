@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>&lt;juicy-markdown&gt;</title>
+
+    <!-- Importing Web Component's Polyfill -->
+    <script src="../webcomponentsjs/webcomponents.js"></script>
+
+    <!-- Importing Custom Elements -->
+    <link rel="import" href="juicy-markdown.html">
+</head>
+<body>
+<a href="https://github.com/Juicy/juicy-markdown"><img style="position: absolute; top: 0; right: 0; border: 0; z-index: 9;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+    <!-- Using Custom Elements -->
+    <juicy-markdown value="# &lt;juicy-markdown&gt;
+
+> Polymer Element with GitHub Flavored Markdown (GFM) viewer
+
+## Demo:
+
+```html
+<juicy-markdown value=&quot;# &lt;juicy-markdown&gt;
+
+> Polymer Element with GitHub Flavored Markdown (GFM) viewer
+
+## Demo: ...
+&quot;></juicy-markdown>
+```
+Entire page is a content of the &lt;juicy-markdown&gt;, check the source!
+
+## Install
+
+Install the component using [Bower](http://bower.io/):
+
+```sh
+$ bower install juicy-markdown --save
+```
+
+Or [download as ZIP](https://github.com/Juicy/juicy-markdown/archive/polymer_1.0.zip).
+
+## Usage
+
+1. Import Web Components' polyfill:
+
+    ```html
+    <script src=&quot;bower_components/webcomponentsjs/webcomponents.js&quot;></script>
+    ```
+
+2. Import Custom Element:
+
+    ```html
+    <link rel=&quot;import&quot; href=&quot;bower_components/juicy-markdown/juicy-markdown.html&quot;>
+    ```
+
+3. Start using it!
+
+    ```html
+    <my-element value=&quot;# Markdown here&quot;></my-element>
+    ```
+
+## Options
+
+Attribute | Options   | Default | Description
+---       | ---       | ---     | ---
+`value`   | *string*  | ``      | Markdown to render.
+`ghcss`   | *boolean* | `false` | Should ghithub-markdown.css be imported?
+
+
+## Contributing
+
+1. Fork it!
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -m 'Add some feature'`
+4. Push to the branch: `git push origin my-new-feature`
+5. Submit a pull request :D
+
+## History
+
+For detailed changelog, check [Releases](https://github.com/Juicy/juicy-markdown/releases).
+" ghcss></juicy-markdown>
+
+</body>
+</html>

@@ -1,4 +1,6 @@
 {
     "name": "App store",
-    "description": "Polyjuice App Store Client"
+    "description": "Polyjuice App Store Client",
+    "html": "/AppStoreClient/viewmodels/AppIconPage.html",
+    "url": "appstoreclient"
 }

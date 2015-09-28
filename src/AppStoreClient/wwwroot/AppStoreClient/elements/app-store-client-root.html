@@ -1,9 +1,9 @@
 ﻿<link rel="import" href="/sys/polymer/polymer.html" />
 <link rel="import" href="/sys/juicy-markdown/juicy-markdown.html" />
 
-<polymer-element name="app-store-client-root" attributes="applications">
+<dom-module id="app-store-client-root">
+    <link rel="import" type="css" href="/AppStoreClient/css/master.css">
     <template>
-        <link rel="stylesheet" href="/AppStoreClient/css/master.css">
         <style>
             :host {
                 display: -webkit-flex;
@@ -207,34 +207,27 @@
             }
         </style>
         
-        <template repeat="{{item in sortedApplications}}">
+        <template is="dom-repeat" items="{{sortedApplications}}">
 
             <div class="appStoreItem">
 
                 <!-- Banner -->
                 <div>
-                    <img style="height:100%; width:100%;" src="/appstoreclient/bg/Banner_{{item.DisplayName}}.jpg" />
-
+                    <img style="height:100%; width:100%;" src="{{getBannerUrl(item.DisplayName)}}" />
                     <div class="operations">
-
-                        <template if="{{!item.IsDeployed && item.Status==0}}">
-                            <button style="background: #1E81DE" onclick="getModel(this).item.Install$++" title="Install Application">Install</button>
+                        <template is="dom-if" if="{{getIsInstallable(item.IsDeployed, item.Status)}}">
+                            <button style="background: #1E81DE" onclick="++this.value;" title="Install Application" value="{{item.Install$::click}}">Install</button>
                         </template>
 
-                        <template if="{{item.IsDeployed && item.IsRunning && item.Status==0}}">
-                            <a style="min-width: 80px;background: #479E13" class="linkbutton" href="/{{item.AppName}}" target="_blank" role="button" title="Open Application">Open</a>
-                            <!--<a  href="http://google.com" target="_blank" >Google</a>-->
+                        <template is="dom-if" if="{{getIsOpenable(item.IsDeployed, item.IsRunning, item.Status)}}">
+                            <a style="min-width: 80px;background: #479E13" class="linkbutton" href="{{getAppUrl(item.AppName)}}" target="_blank" role="button" title="Open Application">Open</a>
                         </template>
 
-                        <!--                                        <template if="{{item.IsDeployed && !item.IsRunning}}">
-                                                                <button style="background: #479E13" onclick="getModel(this).item.Open$++" title="Restart Application">Restart</button>
-                                                            </template>-->
-
-                        <template if="{{item.CanBeUninstalled && item.IsDeployed && item.Status==0}}">
-                            <button style="background: #DE3F1E" onclick="getModel(this).item.Delete$++" title="Uninstall Application">Uninstall</button>
+                        <template is="dom-if" if="{{getIsUninstallable(item.CanBeUninstalled, item.IsDeployed, item.Status)}}">
+                            <button style="background: #DE3F1E" onclick="++this.value;" title="Uninstall Application" value="{{item.Delete$::click}}">Uninstall</button>
                         </template>
 
-                        <template if="{{item.Status!=0}}">
+                        <template is="dom-if" if="{{item.Status}}">
                             <button style="background: #1E81DE; padding:2px 0px 0px 0px">
                                 <div id="floatingCirclesG">
                                     <div class="f_circleG" id="frotateG_01"></div>
@@ -250,12 +243,11 @@
                         </template>
                     </div>
 
-                    <template if="{{item.HasErrorMessage}}">
+                    <template is="dom-if" if="{{item.HasErrorMessage}}">
                         <div class="errorMessage">
+                            <span>{{item.ErrorMessage.Message}}</span>
 
-                            {{item.ErrorMessage.Message}}
-
-                            <template if="{{item.ErrorMessage.HelpLink}}">
+                            <template is="dom-if" if="{{item.ErrorMessage.HelpLink}}">
                                 <a href="{{item.ErrorMessage.HelpLink}}" target="_blank">Help</a>.
                                 View the
                                 <a href="#/server/log">log</a> for more details.
@@ -275,10 +267,10 @@
                     <!-- Info -->
                     <div>
                         <div class="appVersion">{{item.Version}}</div>
-                        <template if="{{item.Heading}}">
+                        <template is="dom-if" if="{{item.Heading}}">
                             <h1 class="appTitle">{{item.Heading}}</h1>
                         </template>
-                        <template if="{{!item.Heading}}">
+                        <template is="dom-if" if="{{!item.Heading}}">
                             <h1 class="appTitle">{{item.DisplayName}}</h1>
                         </template>
 
@@ -290,27 +282,20 @@
 
                 <!-- Bottom part -->
                 <div>
-
-                    <!-- Ratings -->
-                    <div>
-
+                    <div style="margin:5px;text-align:center">
+                        <img height="15" src="/appstoreclient/images/four-and-a-half-star-rating.png" />
+                        <p style="padding:0;margin:0;font-size:10px;text-align:center">(123 ratings)</p>
                     </div>
-                    <div>
-                    </div>
-                    <div>
-                        <div style="margin:5px;text-align:center">
-                            <img height="15px" src="/appstoreclient/images/four-and-a-half-star-rating.png" />
-                            <p style="padding:0;margin:0;font-size:10px;text-align:center">(123 ratings)</p>
-                        </div>
-
-                    </div>
-                    <!--<star-rating stars="5" rate="0"></star-rating>-->
                 </div>
             </div>
         </template>
     </template>
     <script>
-        Polymer("app-store-client-root", {
+        Polymer({
+            is: "app-store-client-root",
+            properties: {
+                applications: { type: Array, value: [], observer: "applicationsChanged" }
+            },
             sortedApplications: [],
             applicationsChanged: function () {
                 var apps = this.applications.slice();
@@ -327,8 +312,23 @@
                     return 0;
                 });
 
-                this.sortedApplications = apps;
+                this.set("sortedApplications", apps);
+            },
+            getBannerUrl: function (name) {
+                return ["/appstoreclient/bg/Banner_", name, ".jpg"].join("");
+            },
+            getIsInstallable: function (isDeployed, status) {
+                return !isDeployed && status == 0;
+            },
+            getIsOpenable: function (isDeployed, isRunning, status) {
+                return isDeployed && isRunning && status == 0;
+            },
+            getIsUninstallable: function (canBeUninstalled, isDeployed, status) {
+                return canBeUninstalled && isDeployed && status == 0;
+            },
+            getAppUrl: function (name) {
+                return "/" + name;
             }
         });
     </script>
-</polymer-element>
+</dom-module>

@@ -1,9 +1,8 @@
 <link rel="import" href="/sys/puppet-redirect/src/puppet-redirect.html">
-<link rel="import" href="/sys/star-rating/star-rating.html">
+<!--<link rel="import" href="/sys/star-rating/star-rating.html">-->
 <link rel="import" href="/AppStoreClient/elements/app-store-client-root.html" />
 <link rel="stylesheet" href="/AppStoreClient/css/master.css">
 <template>
-
     <style>
         .appstorebody {
             font-family: Verdana, Geneva, sans-serif;
@@ -17,80 +16,83 @@
             padding: 5px 5px 5px 20px;
         }
     </style>
-
-    <template id="appStoreView" bind>
-
+    <template id="appStoreView" is="dom-bind" parent="{{model}}">
         <div class="appstorebody">
-
-            <template repeat="{{store in obj.AppStoreStores}}">
-                <template if="{{getIsStoreVisible(store)}}">
+            <template is="dom-repeat" items="{{model.AppStoreStores}}" as="store">
+                <template is="dom-if" if="{{getIsStoreVisible(store)}}">
                     <div class="appstoreheader">
-                        <h1>{{store.DisplayName}} Store</h1>
+                        <h1><span>{{store.DisplayName}}</span> Store</h1>
                     </div>
                     <div class="appStoreItemPanel">
                         <app-store-client-root applications="{{store.Applications}}"></app-store-client-root>
                     </div>
                 </template>
             </template>
-
         </div>
-
+        <link is="puppet-redirect" history url$="{{model.RedirectUrl}}" />
+        <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
     </template>
+    <script>
+        (function (template) {
+            template.getIsStoreVisible = function (store) {
+                var include = template;
 
-    <link is="puppet-redirect" history url="{{ RedirectUrl }}">
+                while (include && include.tagName.toLowerCase() != "starcounter-include") {
+                    include = include.parentNode;
+                }
 
+                return include.partial.DisplayAllStores || include.partial.DisplayStores.indexOf(store.DisplayName) >= 0;
+            }
+        })(document.currentScript.previousElementSibling);
+    </script>
     <script>
         (function () {
             function bindAppStorePuppet(puppet) {
                 var element = document.getElementById("appStoreView");
-                var parentModel = getModel(element);
 
-                element.model.obj = puppet.obj;
-                element.model.getIsStoreVisible = function (store) {
-                    return parentModel.DisplayAllStores || parentModel.DisplayStores.indexOf(store.DisplayName) >= 0;
-                };
-
-                if (!element.bindingDelegate) {
-                    element.bindingDelegate = new PolymerExpressions(); // Make the "item" bindings work
-                }
+                element.model = puppet.obj;
             }
-            if (!window.appStorePuppet) {
-                var sessionPuppet = document.querySelector("puppet-client");
-                var referer = sessionPuppet.network.remoteUrl.pathname;
-                var result = referer.match(/^\/__([^/]*)/);
-                var dbname = result[1];
-                if (!dbname) {
-                    throw new Error("Dbname could not be determined from URL " + referer);
-                }
-                var adminPort = 8182;
-                var url = window.location.protocol + "//" + window.location.hostname + ":" + adminPort + "/api/servermodel/" + dbname;
-                window.appStorePuppet = new Puppet({
-                    remoteUrl: url,
-                    localVersionPath: "",
-                    remoteVersionPath: "",
-                    useWebSocket: true,
-                    callback: function () {
-                        bindAppStorePuppet(this);
-                        this.obj.RefreshAppStoreStores$++;
-                    },
-                    onPatchReceived: function (data, url, method) {
-                        if (!data) {
-                            return;
-                        }
 
-                        var patches = JSON.parse(data);
+            if (window.appStorePuppet) {
+                bindAppStorePuppet(window.appStorePuppet);
+                return;
+            }
 
-                        for (var i = 0, l = patches.length; i < l; i++) {
-                            if (/.*IsInstalled/gi.test(patches[i].path)) {
-                                window.location = window.location.href;
-                            }
+            var sessionPuppet = document.querySelector("puppet-client");
+            var referer = sessionPuppet.network.remoteUrl.pathname;
+            var result = referer.match(/^\/__([^/]*)/);
+            var dbname = result[1];
+
+            if (!dbname) {
+                throw new Error("Dbname could not be determined from URL " + referer);
+            }
+
+            var adminPort = 8182;
+            var url = window.location.protocol + "//" + window.location.hostname + ":" + adminPort + "/api/servermodel/" + dbname;
+
+            window.appStorePuppet = new Puppet({
+                remoteUrl: url,
+                localVersionPath: "",
+                remoteVersionPath: "",
+                useWebSocket: true,
+                callback: function () {
+                    bindAppStorePuppet(this);
+                    this.obj.RefreshAppStoreStores$++;
+                },
+                onPatchReceived: function (data, url, method) {
+                    if (!data) {
+                        return;
+                    }
+
+                    var patches = JSON.parse(data);
+
+                    for (var i = 0, l = patches.length; i < l; i++) {
+                        if (/.*IsInstalled/gi.test(patches[i].path)) {
+                            window.location = window.location.href;
                         }
                     }
-                });
-            }
-            else {
-                bindAppStorePuppet(window.appStorePuppet);
-            }
+                }
+            });
         })();
     </script>
 </template>
