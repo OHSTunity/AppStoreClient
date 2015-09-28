@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PolyjuiceNamespace;
 
 namespace AppStoreClient {
     internal class MainHandlers {
@@ -112,9 +111,9 @@ namespace AppStoreClient {
                 return 200;
             });
 
-            Polyjuice.Map("/appstoreclient/menu", "/polyjuice/menu");
-            Polyjuice.Map("/appstoreclient/app-name", "/polyjuice/app-name");
-            Polyjuice.Map("/appstoreclient/app-icon", "/polyjuice/app-icon");
+            UriMapping.Map("/appstoreclient/menu", "/sc/mapping/menu");
+            UriMapping.Map("/appstoreclient/app-name", "/sc/mapping/app-name");
+            UriMapping.Map("/appstoreclient/app-icon", "/sc/mapping/app-icon");
         }
     }
 }

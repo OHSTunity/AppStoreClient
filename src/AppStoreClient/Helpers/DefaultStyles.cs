@@ -4,7 +4,7 @@ using Starcounter;
 namespace AppStoreClient {
     internal class DefaultStyles {
         public void ApplyIfEmpty() {
-            if (Db.SQL("SELECT * FROM JuicyTiles.JuicyTilesSetup WHERE Key LIKE ?", "/AppStoreClient/%").First != null) {
+            if (Db.SQL("SELECT * FROM Starcounter.Layout WHERE Key LIKE ?", "/AppStoreClient/%").First != null) {
                 return;
             }
 
@@ -24,7 +24,7 @@ namespace AppStoreClient {
 
         public void Clear() {
             Db.Transact(() => {
-                Db.SlowSQL("DELETE FROM JuicyTiles.JuicyTilesSetup WHERE Key LIKE ?", "/AppStoreClient/%");
+                Db.SlowSQL("DELETE FROM Starcounter.Layout WHERE Key LIKE ?", "/AppStoreClient/%");
             });
         }
     }

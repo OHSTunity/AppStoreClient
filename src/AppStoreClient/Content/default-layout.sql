@@ -1,2 +1,2 @@
-﻿INSERT INTO JuicyTiles.JuicyTilesSetup("Key","Value") VALUES
+﻿INSERT INTO Starcounter.Layout("Key","Value") VALUES
     ('/AppStoreClient/viewmodels/LauncherWrapperPage.html', '{"id":"root","direction":"horizontal","gutter":0,"items":[{"precalculateHeight":false,"width":"100%","widthFlexible":true,"priority":0.5,"id":"AppStoreClient/0","height":1,"itemName":"starcounter Store","hidden":false,"heightDynamic":true}],"width":1838,"precalculateHeight":true,"itemName":"LauncherWrapperPage.html"}')
