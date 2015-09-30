@@ -16,9 +16,9 @@
             padding: 5px 5px 5px 20px;
         }
     </style>
-    <template id="appStoreView" is="dom-bind" parent="{{model}}">
+    <template id="appStoreView" is="dom-bind">
         <div class="appstorebody">
-            <template is="dom-repeat" items="{{model.AppStoreStores}}" as="store">
+            <template is="dom-repeat" items="{{adminModel.AppStoreStores}}" as="store">
                 <template is="dom-if" if="{{getIsStoreVisible(store)}}">
                     <div class="appstoreheader">
                         <h1><span>{{store.DisplayName}}</span> Store</h1>
@@ -29,11 +29,15 @@
                 </template>
             </template>
         </div>
-        <link is="puppet-redirect" history url$="{{model.RedirectUrl}}" />
-        <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
+        <link is="puppet-redirect" history url$="{{adminModel.RedirectUrl}}" />
+        <dom-bind-notifier path="adminModel" observed-object="{{adminModel}}" deep></dom-bind-notifier>
     </template>
     <script>
         (function (template) {
+            function bindAppStorePuppet(puppet) {
+                template.adminModel = puppet.obj;
+            }
+
             template.getIsStoreVisible = function (store) {
                 var include = template;
 
@@ -42,16 +46,7 @@
                 }
 
                 return include.partial.DisplayAllStores || include.partial.DisplayStores.indexOf(store.DisplayName) >= 0;
-            }
-        })(document.currentScript.previousElementSibling);
-    </script>
-    <script>
-        (function () {
-            function bindAppStorePuppet(puppet) {
-                var element = document.getElementById("appStoreView");
-
-                element.model = puppet.obj;
-            }
+            };
 
             if (window.appStorePuppet) {
                 bindAppStorePuppet(window.appStorePuppet);
@@ -93,6 +88,6 @@
                     }
                 }
             });
-        })();
+        })(document.currentScript.previousElementSibling);
     </script>
 </template>
