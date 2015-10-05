@@ -39,6 +39,10 @@
             }
 
             template.getIsStoreVisible = function (store) {
+                if (!store.Applications.length) {
+                    return false;
+                }
+
                 var include = template;
 
                 while (include && include.tagName.toLowerCase() != "starcounter-include") {

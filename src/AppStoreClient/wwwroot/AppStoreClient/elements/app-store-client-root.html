@@ -291,44 +291,82 @@
         </template>
     </template>
     <script>
-        Polymer({
-            is: "app-store-client-root",
-            properties: {
-                applications: { type: Array, value: [], observer: "applicationsChanged" }
-            },
-            sortedApplications: [],
-            applicationsChanged: function () {
-                var apps = this.applications.slice();
+        (function () {
+            function group(array, fn) {
+                var result = [];
+                var dictionary = {};
 
-                apps.sort(function (a, b) {
-                    if (a.DisplayName < b.DisplayName) {
-                        return -1;
+                for (var i = 0; i < array.length; i++) {
+                    var it = array[i];
+                    var key = fn(it);
+                    var row;
+
+                    row = dictionary[key];
+
+                    if (!row) {
+                        row = [];
+                        row.key = key;
+                        result.push(row);
+                        dictionary[key] = row;
                     }
 
-                    if (a.DisplayName > b.DisplayName) {
-                        return 1;
-                    }
-                    
-                    return 0;
-                });
+                    row.push(it);
+                }
 
-                this.set("sortedApplications", apps);
-            },
-            getBannerUrl: function (name) {
-                return ["/appstoreclient/bg/Banner_", name, ".jpg"].join("");
-            },
-            getIsInstallable: function (isDeployed, status) {
-                return !isDeployed && status == 0;
-            },
-            getIsOpenable: function (isDeployed, isRunning, status) {
-                return isDeployed && isRunning && status == 0;
-            },
-            getIsUninstallable: function (canBeUninstalled, isDeployed, status) {
-                return canBeUninstalled && isDeployed && status == 0;
-            },
-            getAppUrl: function (name) {
-                return "/" + name;
-            }
-        });
+                return result;
+            };
+
+            Polymer({
+                is: "app-store-client-root",
+                properties: {
+                    applications: { type: Array, value: [], observer: "applicationsChanged" }
+                },
+                sortedApplications: [],
+                applicationsChanged: function () {
+                    var groups = group(this.applications, function (app) {
+                        return app.DisplayName;
+                    });
+
+                    groups.sort(function (a, b) {
+                        a = a.key;
+                        b = b.key;
+
+                        return a < b ? -1 : (a > b ? 1 : 0);
+                    });
+
+                    var apps = [];
+
+                    for (var i = 0; i < groups.length; i++) {
+                        var set = groups[i];
+
+                        set.sort(function (a, b) {
+                            a = new Date(a.VersionDate);
+                            b = new Date(b.VersionDate);
+
+                            return a < b ? 1 : (a > b ? -1 : 0);
+                        });
+
+                        apps.push(set[0]);
+                    }
+
+                    this.set("sortedApplications", apps);
+                },
+                getBannerUrl: function (name) {
+                    return ["/appstoreclient/bg/Banner_", name, ".jpg"].join("");
+                },
+                getIsInstallable: function (isDeployed, status) {
+                    return !isDeployed && status == 0;
+                },
+                getIsOpenable: function (isDeployed, isRunning, status) {
+                    return isDeployed && isRunning && status == 0;
+                },
+                getIsUninstallable: function (canBeUninstalled, isDeployed, status) {
+                    return canBeUninstalled && isDeployed && status == 0;
+                },
+                getAppUrl: function (name) {
+                    return "/" + name;
+                }
+            });
+        })();
     </script>
 </dom-module>
