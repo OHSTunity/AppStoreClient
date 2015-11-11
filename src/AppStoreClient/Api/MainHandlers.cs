@@ -15,20 +15,13 @@ namespace AppStoreClient {
                 return new Page() { Html = "/AppStoreClient/viewmodels/MenuPage.html" };
             });
 
-            // App-icon (Launchpad)
-            Starcounter.Handle.GET("/appstoreclient/app-icon", () => {
-                return new Page() {
-                    Html = "/AppStoreClient/viewmodels/AppIconPage.html"
-                };
-            });
-
             // App-name (Launchpad)
-            Starcounter.Handle.GET("/appstoreclient/app-name", () => {
+            Handle.GET("/appstoreclient/app-name", () => {
                 return new AppNamePage();
             });
 
             // Workspace root (Launchpad)
-            Starcounter.Handle.GET("/appstoreclient", () => {
+            Handle.GET("/appstoreclient", () => {
                 return Self.GET("/appstoreclient/apps");
             });
 
@@ -113,7 +106,6 @@ namespace AppStoreClient {
 
             UriMapping.Map("/appstoreclient/menu", "/sc/mapping/menu");
             UriMapping.Map("/appstoreclient/app-name", "/sc/mapping/app-name");
-            UriMapping.Map("/appstoreclient/app-icon", "/sc/mapping/app-icon");
         }
     }
 }
